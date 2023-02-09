@@ -1,0 +1,24 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "Чат",
+  "scripts": {
+    "dev": "parcel src/index.hbs --no-cache",
+    "build": "parcel build src/index.hbs --no-cache",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "autoprefixer": "^10.4.13",
+    "handlebars": "^4.7.7",
+    "parcel": "^2.8.3",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.0",
+    "postcss-preset-env": "^8.0.1",
+    "postcss-simple-vars": "^7.0.1"
+  }
+}

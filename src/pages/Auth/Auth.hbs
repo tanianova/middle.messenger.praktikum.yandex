@@ -1,0 +1,15 @@
+{{!< layout}}
+
+<div class="center">
+  <div class="form-wrapper auth">
+    <form  action="">
+      <h4 class="auth__title">Вход</h4>
+      <div class="auth__fields">
+        {{> input/input type="text" name="login" placeholder="Логин"}}
+        {{> input/input  type="password" name="password" placeholder="Пароль"}}
+      </div>
+        {{> button/button  type="submit" text="Авторизоваться"}}
+        {{> link/link  href="../Register/Register.hbs" text="Нет аккаунта?"}}
+    </form>
+  </div>
+</div>
