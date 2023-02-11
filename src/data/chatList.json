@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Андрей",
+    "message": "Изображение",
+    "time": "10:49",
+    "unread": "2",
+    "src": "../../../static/img/bee-on-daisy.jpeg"
+  },
+  {
+    "name": "Киноклуб",
+    "message": "стикер",
+    "time": "12:00",
+    "lastMessageMine": true
+  },
+  {
+    "name": "Илья",
+    "message": "Друзья, у меня для вас особенный выпуск новостей!...",
+    "time": "15:12",
+    "unread": "4"
+  },
+  {
+    "name": "Вадим",
+    "message": "Круто!",
+    "time": "Пт",
+    "class": "selected"
+  }
+]
