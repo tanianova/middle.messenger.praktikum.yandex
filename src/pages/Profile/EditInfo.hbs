@@ -3,7 +3,7 @@
 <section class="profile">
   <a class="profile__link-back" href="../Chat/Chat.hbs">{{> buttonArrow/buttonArrow}}</a>
   <div class="profile__container center">
-    <div class="profile__avatar">
+    <div class="profile__avatar edit-info__avatar">
       <svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="65" cy="65" r="65" fill="#EFEFEF" />
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -11,21 +11,13 @@
               fill="#CDCDCD" />
       </svg>
     </div>
-    <h5 class="profile__name">Татьяна</h5>
-    <form class="profile__form" action="" >
+    <form class="profile__form" action="">
       <div class="profile__fields">
-        {{#each profileInput}}
+        {{#each editInfoInput}}
           {{> input/input this}}
         {{/each}}
       </div>
-      <div class="profile__links">
-        {{> link/link class="profile__link" href="./EditInfo.hbs" text="Изменить данные"}}
-        {{> link/link class="profile__link" href="./EditPassword.hbs" text="Изменить пароль"}}
-        {{> link/link class="profile__link link-danger" href="../Auth/Auth.hbs" text="Выйти"}}
-      </div>
+      {{> button/button class="profile__button" type="submit" text="Сохранить"}}
     </form>
   </div>
 </section>
-
-
-

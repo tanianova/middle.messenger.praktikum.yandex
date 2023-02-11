@@ -1,7 +1,10 @@
 <div class="input__field">
   <label class="input__wrapper">
-    <input class="input {{class}}" type="{{type}}" name="{{name}}" required />
-    <span class="input__placeholder">{{placeholder}}</span>
+    <input class="input {{class}}" type="{{type}}" name="{{name}}"
+      {{#if value }} value="{{value}}" {{/if}}
+      {{#if required }} required {{/if}}
+      {{#if readonly }} readonly {{/if}} />
+    <span class="input__label">{{label}}</span>
   </label>
 </div>
 

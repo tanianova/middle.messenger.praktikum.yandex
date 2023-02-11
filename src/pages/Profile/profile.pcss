@@ -1,0 +1,68 @@
+.profile {
+  display: flex;
+  width: 100%;
+
+  &__link-back {
+    width: 5%;
+    background-color: $fill-light-grey;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__container {
+    width: 40%;
+  }
+
+  &__avatar {
+    padding-bottom: 20px;
+  }
+
+  &__name {
+    padding-bottom: 60px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__fields {
+    padding-bottom: 60px;
+  }
+
+  .input {
+    text-align: right;
+    color: $txt-secondary;
+
+    &__field {
+      font: 500 13px/13px "Inter", sans-serif;
+      padding-bottom: 10px;
+    }
+
+    &__wrapper {
+      border-bottom-color: $line;
+    }
+
+    &__label {
+      color: $txt-primary;
+    }
+
+    &:focus + .input__label, &:valid + .input__label {
+      transform: translateY(-7px);
+      font-size: inherit;
+    }
+  }
+
+  &__links .link {
+    display: block;
+    font-size: 13px;
+    padding-bottom: 20px;
+  }
+
+  &__button {
+    align-self: center;
+    max-width: 280px;
+  }
+
+}
