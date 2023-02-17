@@ -1,0 +1,14 @@
+[
+  {
+    "type": "text",
+    "name": "login",
+    "label": "Логин",
+    "required": true
+  },
+  {
+    "type": "password",
+    "name": "password",
+    "label": "Пароль",
+    "required": true
+  }
+]

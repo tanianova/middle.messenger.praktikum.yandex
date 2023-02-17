@@ -1,0 +1,17 @@
+{{!< layout}}
+
+<div class="center">
+  <section class="form__wrapper auth">
+    <form action="">
+      <h4 class="auth__title">Вход</h4>
+      <div class="auth__fields">
+        {{#each authInput}}
+          {{> input/input this}}
+        {{/each}}
+      </div>
+      {{> button/button type="submit" text="Авторизоваться"}}
+      {{> link/link href="../Register/Register.hbs" text="Нет аккаунта?"}}
+    </form>
+  </section>
+</div>
+

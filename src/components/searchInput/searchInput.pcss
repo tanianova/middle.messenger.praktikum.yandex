@@ -1,0 +1,34 @@
+.search {
+  position: relative;
+  display: block;
+  height: 32px;
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 0 10px;
+
+  &__input {
+    width: 100%;
+    padding: 8px 34px;
+    background-color: $fill-dark-grey;
+    border-radius: 5px;
+    text-align: center;
+
+    &:focus {
+      text-align: left;
+      transition: all 0.3s;
+
+      + .search__icon {
+        left: 10px;
+        transition: all 0.3s;
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 34%;
+    top: 5px;
+  }
+
+
+}
