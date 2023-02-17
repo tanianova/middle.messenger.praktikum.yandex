@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Чат",
   "scripts": {
-    "dev": "parcel src/index.hbs --no-cache",
+    "dev": "parcel src/index.hbs --no-cache --open",
     "build": "parcel build src/index.hbs --no-cache",
     "start": "npm run build && node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
