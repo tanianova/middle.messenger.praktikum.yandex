@@ -1,0 +1,59 @@
+.popover {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  z-index: 1;
+
+  width: 210px;
+  padding: 15px;
+}
+
+.edit-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  &:first-of-type{
+    margin-bottom: 16px;
+  }
+
+  &__icon {
+    display: block;
+    position: relative;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 1px solid $blue;
+    color: $blue;
+    &:last-of-type{
+      rotate: 90deg;
+    }
+
+    &:after, &:before {
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      display: block;
+      content: "";
+      width: 11px;
+      height: 1px;
+      background-color: $blue;
+    }
+
+    &:after {
+      rotate: 90deg;
+    }
+    &.delete-icon{
+      rotate: 45deg;
+    }
+
+  }
+
+  &__name {
+    font-size: 12px;
+  }
+}
+
+
