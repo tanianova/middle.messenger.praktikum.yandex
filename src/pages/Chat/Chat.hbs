@@ -12,7 +12,33 @@
       {{/each}}
     </div>
   </div>
-  <div class="chat-content center">
-    <p class="chat-content__info">Выберите чат чтобы отправить сообщение</p>
+  <div class="chat-content">
+    <div class="chat-content__header">
+      <div class="chat-content__header-info">
+        <div class="chat-content__header-avatar small-avatar">
+          {{#if src}}<img src="{{src}}" alt="Avatar" /> {{/if}}
+        </div>
+        <h5 class="chat-content__header-name">Вадим</h5>
+      </div>
+      <button class="button chat-content__header-button">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </button>
+    </div>
+    <div class="chat-content__main">
+      <p class="chat-content__main-date">19 june</p>
+      {{#each chatMessageList}}
+        {{> chatMessage/chatMessage this}}
+      {{/each}}
+    </div>
+    <div class='chat-content__footer'>
+      <form class='message__form' action=''>
+        {{> attachmentInput/attachmentInput}}
+        {{> messageInput/messageInput}}
+        {{> buttonArrow/buttonArrow type="submit" class="arrow-reverse"}}
+
+      </form>
+    </div>
   </div>
 </section>
