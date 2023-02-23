@@ -1,19 +1,12 @@
 import Block from '../../utils/Block';
 import template from './ui.hbs';
-import { RenderDom } from '../../utils/RenderDom';
-import { Button } from '../../components/button';
+import { Link } from '../../components/link';
 
 export class Error404Page extends Block {
   init() {
-    this.children.chatLink = new Button({
+    this.children.chatLink = new Link({
       text: 'Назад к чатам',
-      type: 'button',
-      class: 'link',
-      events: {
-        click: () => {
-          RenderDom('chat');
-        },
-      },
+      href: '/chat',
     });
   }
 

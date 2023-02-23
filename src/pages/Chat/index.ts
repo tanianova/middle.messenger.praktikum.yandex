@@ -6,21 +6,15 @@ import { chatList, chatMessageList } from './const';
 import { ChatItem } from '../../components/chatItem';
 import { ChatMessage } from '../../components/chatMessage';
 import { ButtonArrow } from '../../components/buttonArrow';
-import { Button } from '../../components/button';
-import { RenderDom } from '../../utils/RenderDom';
+import { Link } from '../../components/link';
 
 export class ChatPage extends Block {
   init() {
     this.children.popover = new PopoverEditUser();
-    this.children.profileLink = new Button({
+    this.children.profileLink = new Link({
       text: 'Профиль',
-      type: 'button',
-      class: ' chat-link',
-      events: {
-        click: () => {
-          RenderDom('profile');
-        },
-      },
+      class: 'chat-link',
+      href: '/profile',
     });
     this.children.searchInput = new SearchInput();
     this.children.chatList = chatList.map(chat => new ChatItem({ ...chat }));

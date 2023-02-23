@@ -3,7 +3,7 @@ import template from './ui.hbs';
 import { registerInputs } from './const';
 import { Input } from '../../components/input';
 import { Button } from '../../components/button';
-import { RenderDom } from '../../utils/RenderDom';
+import { Link } from '../../components/link';
 
 export class RegisterPage extends Block {
   init() {
@@ -13,15 +13,9 @@ export class RegisterPage extends Block {
       type: 'submit',
       class: 'button',
     });
-    this.children.link = new Button({
+    this.children.link = new Link({
       text: 'Войти',
-      type: 'button',
-      class: 'link',
-      events: {
-        click: () => {
-          RenderDom('chat');
-        },
-      },
+      href: '/chat',
     });
   }
 

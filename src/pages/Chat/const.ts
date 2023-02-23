@@ -1,10 +1,13 @@
+// @ts-ignore
+import img from '../../../static/img/ava.jpeg';
+
 export const chatList = [
   {
     name: 'Андрей',
     message: 'Изображение',
     time: '10:49',
     unread: '2',
-    src: '../../../static/img/beeOnDaisy.jpg',
+    src: img,
   },
   {
     name: 'Киноклуб',

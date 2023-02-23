@@ -1,13 +1,12 @@
 import Block from '../../utils/Block';
 import template from './ui.hbs';
-
-import { Button } from '../button';
 import { links } from './const';
+import { Link } from '../link';
 
 export class Navigation extends Block {
   init() {
     this.children.links = links.map(link => {
-      return new Button({ ...link });
+      return new Link({ ...link });
     });
   }
 

@@ -1,8 +1,8 @@
 import Block from '../../utils/Block';
 import template from './ui.hbs';
-import { RenderDom } from '../../utils/RenderDom';
 import { Button } from '../../components/button';
 import { Input } from '../../components/input';
+import { Link } from '../../components/link';
 
 export class AuthPage extends Block {
   init() {
@@ -23,15 +23,9 @@ export class AuthPage extends Block {
       type: 'submit',
       class: 'button',
     });
-    this.children.registrationLink = new Button({
+    this.children.registrationLink = new Link({
       text: 'Нет аккаунта?',
-      type: 'button',
-      class: 'link',
-      events: {
-        click: () => {
-          RenderDom('register');
-        },
-      },
+      href: '/register',
     });
   }
 
