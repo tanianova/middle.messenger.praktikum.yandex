@@ -1,0 +1,46 @@
+<section class="chat">
+  <div class="chat-sidebar">
+    <div class="chat-link__container">
+      {{{profileLink}}}
+    </div>
+    {{{searchInput}}}
+    <div class="chat-list">
+      {{#each chatList}}
+        {{{this}}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="chat-content">
+    {{{popover}}}
+    <div class="chat-content__header">
+      <div class="chat-content__header-info">
+        <div class="chat-content__header-avatar small-avatar">
+        </div>
+        <h5 class="chat-content__header-name">Вадим</h5>
+      </div>
+      <button class="button chat-content__header-button">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </button>
+    </div>
+    <div class="chat-content__main">
+      <p class="chat-content__main-date">19 june</p>
+      {{#each chatMessageList}}
+        {{{this}}}
+      {{/each}}
+    </div>
+    <div class='chat-content__footer'>
+      <form class='message__form' action=''>
+        <label class="attachment__label" for="attachment">
+          <input class="attachment__input" type="file" id="attachment" name="attachment" />
+        </label>
+        <label class="message-input__label" for="message">
+          <input class="message-input__input" placeholder="Сообщение" type="text" id="message" name="message" />
+        </label>
+        {{{buttonArrow}}}
+      </form>
+    </div>
+  </div>
+
+</section>
