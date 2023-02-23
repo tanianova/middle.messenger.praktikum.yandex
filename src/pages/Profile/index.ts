@@ -7,13 +7,13 @@ import { Input } from '../../components/input';
 import { Avatar } from '../../components/avatar';
 import { PopupEditAvatar } from '../../components/popupEditAvatar';
 import { Button } from '../../components/button';
-import { renderDom } from '../../utils/renderDom';
+import { RenderDom } from '../../utils/RenderDom';
 
 export class ProfilePage extends Block {
   init() {
     this.children.buttonArrow = new ButtonArrow({
       type: 'button',
-      events: { click: () => renderDom('chat') },
+      events: { click: () => RenderDom('chat') },
     });
     this.children.avatar = new Avatar({});
     this.children.profileInputs = profileInputs.map(input => new Input({ ...input }));
@@ -23,7 +23,7 @@ export class ProfilePage extends Block {
       class: 'link profile__link',
       events: {
         click: () => {
-          renderDom('editInfo');
+          RenderDom('editInfo');
         },
       },
     });
@@ -33,7 +33,7 @@ export class ProfilePage extends Block {
       class: 'link profile__link',
       events: {
         click: () => {
-          renderDom('editPassword');
+          RenderDom('editPassword');
         },
       },
     });
@@ -43,7 +43,7 @@ export class ProfilePage extends Block {
       class: 'link profile__link link-danger',
       events: {
         click: () => {
-          renderDom('/');
+          RenderDom('/');
         },
       },
     });

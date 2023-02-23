@@ -3,7 +3,7 @@ import template from './ui.hbs';
 import { registerInputs } from './const';
 import { Input } from '../../components/input';
 import { Button } from '../../components/button';
-import { renderDom } from '../../utils/renderDom';
+import { RenderDom } from '../../utils/RenderDom';
 
 export class RegisterPage extends Block {
   init() {
@@ -19,7 +19,7 @@ export class RegisterPage extends Block {
       class: 'link',
       events: {
         click: () => {
-          renderDom('chat');
+          RenderDom('chat');
         },
       },
     });

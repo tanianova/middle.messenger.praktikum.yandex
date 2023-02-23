@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './ui.hbs';
 import { ButtonArrow } from '../../components/buttonArrow';
-import { renderDom } from '../../utils/renderDom';
+import { RenderDom } from '../../utils/RenderDom';
 import { Avatar } from '../../components/avatar';
 import { Input } from '../../components/input';
 import { editInfoInputs } from './const';
@@ -11,7 +11,7 @@ export class ProfileEditInfoPage extends Block {
   init() {
     this.children.buttonArrow = new ButtonArrow({
       type: 'button',
-      events: { click: () => renderDom('chat') },
+      events: { click: () => RenderDom('chat') },
     });
     this.children.avatar = new Avatar({class:"avatar-edit"});
     this.children.editInfoInputs = editInfoInputs.map(input => new Input({ ...input }));

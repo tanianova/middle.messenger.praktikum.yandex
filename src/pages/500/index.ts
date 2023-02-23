@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './ui.hbs';
-import { renderDom } from '../../utils/renderDom';
+import { RenderDom } from '../../utils/RenderDom';
 import { Button } from '../../components/button';
 
 export class Error500Page extends Block {
@@ -11,7 +11,7 @@ export class Error500Page extends Block {
       class: 'link',
       events: {
         click: () => {
-          renderDom('chat');
+          RenderDom('chat');
         },
       },
     });

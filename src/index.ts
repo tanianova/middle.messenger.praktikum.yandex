@@ -1,6 +1,6 @@
-import { renderDom } from './utils/renderDom';
+import { RenderDom } from './utils/RenderDom';
 import './styles/index.pcss';
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderDom('/');
+  RenderDom('/');
 });

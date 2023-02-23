@@ -1,4 +1,4 @@
-import { renderDom } from '../../utils/renderDom';
+import { RenderDom } from '../../utils/RenderDom';
 
 export const links = [{
   text: 'Вход',
@@ -6,7 +6,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('/');
+      RenderDom('/');
     },
   },
 }, {
@@ -15,7 +15,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('404');
+      RenderDom('404');
     },
   },
 }, {
@@ -24,7 +24,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('500');
+      RenderDom('500');
     },
   },
 }, {
@@ -33,7 +33,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('chat');
+      RenderDom('chat');
     },
   },
 }, {
@@ -42,7 +42,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('register');
+      RenderDom('register');
     },
   },
 }, {
@@ -51,7 +51,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('profile');
+      RenderDom('profile');
     },
   },
 }, {
@@ -60,7 +60,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('editInfo');
+      RenderDom('editInfo');
     },
   },
 }, {
@@ -69,7 +69,7 @@ export const links = [{
   class: 'link',
   events: {
     click: () => {
-      renderDom('editPassword');
+      RenderDom('editPassword');
     },
   },
 }];

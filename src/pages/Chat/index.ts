@@ -7,7 +7,7 @@ import { ChatItem } from '../../components/chatItem';
 import { ChatMessage } from '../../components/chatMessage';
 import { ButtonArrow } from '../../components/buttonArrow';
 import { Button } from '../../components/button';
-import { renderDom } from '../../utils/renderDom';
+import { RenderDom } from '../../utils/RenderDom';
 
 export class ChatPage extends Block {
   init() {
@@ -18,7 +18,7 @@ export class ChatPage extends Block {
       class: ' chat-link',
       events: {
         click: () => {
-          renderDom('profile');
+          RenderDom('profile');
         },
       },
     });

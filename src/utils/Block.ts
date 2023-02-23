@@ -17,14 +17,7 @@ class Block {
   public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { props: any };
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param propsWithChildren
-   *
-   * @returns {void}
-   */
   constructor(propsWithChildren: TProps = {}) {
     const eventBus = new EventBus();
 
@@ -32,11 +25,6 @@ class Block {
       props,
       children,
     } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-
-      props,
-    };
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -48,7 +36,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: any) {
+  private _getChildrenAndProps(childrenAndProps: TProps) {
     const props: Record<string, any> = {};
     const children: Record<string, Block | Block[]> = {};
 
@@ -130,18 +118,18 @@ class Block {
       });
   }
 
-  private _componentDidUpdate(oldProps: any, newProps: any) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate() {
+    if (this.componentDidUpdate()) {
       this.eventBus()
         .emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
+  protected componentDidUpdate() {
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: TProps) => {
     if (!nextProps) {
       return;
     }
@@ -166,7 +154,7 @@ class Block {
     this._addEvents();
   }
 
-  protected compile(template: (context: any) => string, context: any) {
+  protected compile(template: (context: TProps) => string, context: TProps) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children)
@@ -226,16 +214,16 @@ class Block {
     return this.element;
   }
 
-  private _makePropsProxy(props: any) {
+  private _makePropsProxy(props: TProps) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set(target, prop: string, value) {
         const oldTarget = { ...target };
 
         target[prop] = value;
@@ -250,11 +238,6 @@ class Block {
         throw new Error('Нет доступа');
       },
     });
-  }
-
-  private _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
   }
 
   show() {

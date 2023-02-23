@@ -19,7 +19,7 @@ export const ROUTES = {
   'editPassword': ProfileEditPasswordPage,
 };
 
-export function renderDom(route: keyof typeof ROUTES) {
+export const RenderDom = (route: keyof typeof ROUTES) => {
   const root = document.querySelector('#app')!;
 
   root.innerHTML = '';
@@ -33,4 +33,4 @@ export function renderDom(route: keyof typeof ROUTES) {
   root.appendChild(page.element);
 
   page.dispatchComponentDidMount();
-}
+};
