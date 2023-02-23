@@ -22,11 +22,25 @@ export class AuthPage extends Block {
       text: 'Авторизоваться',
       type: 'submit',
       class: 'button',
+      events: {
+        click: (e: Event) => this.onSubmit(e),
+      },
     });
     this.children.registrationLink = new Link({
       text: 'Нет аккаунта?',
       href: '/register',
     });
+  }
+
+  onSubmit(e: Event) {
+    e.preventDefault();
+    const values = Object.values(this.children)
+      .filter((child: Block) => child instanceof Input)
+      .map((child: Input) => {
+        return [child.getName(), child.getValue()];
+      });
+    const data = Object.fromEntries(values);
+    console.log(data);
   }
 
   render() {

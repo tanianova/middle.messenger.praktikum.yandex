@@ -11,13 +11,31 @@ export class ProfileEditInfoPage extends Block {
     this.children.buttonArrow = new ButtonArrow({
       type: 'button',
     });
-    this.children.avatar = new Avatar({class:"avatar-edit"});
+    this.children.avatar = new Avatar({ class: 'avatar-edit' });
     this.children.editInfoInputs = editInfoInputs.map(input => new Input({ ...input }));
     this.children.button = new Button({
       text: 'Сохранить',
       type: 'submit',
       class: 'button profile__button',
+      events: {
+        click: (e: Event) => this.onSubmit(e),
+      },
     });
+  }
+
+  onSubmit(e: Event) {
+    e.preventDefault();
+    const inputs: string[][] = [];
+    Object.values(this.children)
+      .filter((child: Block) => Array.isArray(child))
+      .map((child: Input[]) => {
+        child.map(input => {
+          inputs.push([input.getName(), input.getValue()]);
+        });
+      });
+
+    const data = Object.fromEntries(inputs);
+    console.log(data);
   }
 
   render() {

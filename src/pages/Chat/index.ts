@@ -7,6 +7,7 @@ import { ChatItem } from '../../components/chatItem';
 import { ChatMessage } from '../../components/chatMessage';
 import { ButtonArrow } from '../../components/buttonArrow';
 import { Link } from '../../components/link';
+import { InputMessage } from '../../components/inputMessage';
 
 export class ChatPage extends Block {
   init() {
@@ -22,7 +23,22 @@ export class ChatPage extends Block {
     this.children.buttonArrow = new ButtonArrow({
       type: 'submit',
       class: 'arrow-reverse',
+      events: {
+        click: (e: Event) => this.onSubmit(e),
+      },
     });
+    this.children.inputMessage = new InputMessage();
+  }
+
+  onSubmit(e: Event) {
+    e.preventDefault();
+    const values = Object.values(this.children)
+      .filter((child: Block) => child instanceof InputMessage)
+      .map((child: InputMessage) => {
+        return [child.getName(), child.getValue()];
+      });
+    const data = Object.fromEntries(values);
+    console.log(data);
   }
 
   render() {

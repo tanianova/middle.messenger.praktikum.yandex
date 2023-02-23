@@ -12,11 +12,29 @@ export class RegisterPage extends Block {
       text: 'Зарегистрироваться',
       type: 'submit',
       class: 'button',
+      events: {
+        click: (e: Event) => this.onSubmit(e),
+      },
     });
     this.children.link = new Link({
       text: 'Войти',
       href: '/chat',
     });
+  }
+
+  onSubmit(e: Event) {
+    e.preventDefault();
+    const inputs: string[][] = [];
+    Object.values(this.children)
+      .filter((child: Block) => Array.isArray(child))
+      .map((child: Input[]) => {
+        child.map(input => {
+          inputs.push([input.getName(), input.getValue()]);
+        });
+      });
+
+    const data = Object.fromEntries(inputs);
+    console.log(data);
   }
 
   render() {
