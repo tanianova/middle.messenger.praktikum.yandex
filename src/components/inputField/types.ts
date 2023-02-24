@@ -6,4 +6,5 @@ export interface InputFieldProps {
   value?: string;
   readonly?: boolean;
   events?: Record<string, EventListenerOrEventListenerObject>;
+  errorMessage?: string;
 }

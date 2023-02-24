@@ -3,8 +3,9 @@
     <form action="">
       <h4 class="auth__title">Вход</h4>
       <div class="auth__fields">
-        {{{loginInput}}}
-        {{{passwordInput}}}
+        {{#each authInputs}}
+          {{{this}}}
+        {{/each}}
       </div>
       {{{authButton}}}
       {{{registrationLink}}}

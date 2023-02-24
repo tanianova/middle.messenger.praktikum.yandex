@@ -4,28 +4,11 @@ import { Button } from '../../components/button';
 import { Link } from '../../components/link';
 import { InputField } from '../../components/inputField';
 import { getFormData } from '../../utils/getFormData';
+import { authInputs } from './const';
 
 export class AuthPage extends Block {
   init() {
-    this.children.loginInput = new InputField({
-      type: 'text',
-      name: 'login',
-      label: 'Логин',
-      required: true,
-      events: {
-        focus: () => {
-        },
-        blur: (event) => {
-          console.log('blur', (event.target as HTMLInputElement)?.value);
-        },
-      },
-    });
-    this.children.passwordInput = new InputField({
-      type: 'password',
-      name: 'password',
-      label: 'Пароль',
-      required: true,
-    });
+    this.children.authInputs = authInputs.map(input=>new InputField({...input}))
     this.children.authButton = new Button({
       text: 'Авторизоваться',
       type: 'submit',
@@ -42,7 +25,7 @@ export class AuthPage extends Block {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const data = getFormData(this.getContent())
+    const data = getFormData(this.getContent());
     console.log(data);
   }
 
