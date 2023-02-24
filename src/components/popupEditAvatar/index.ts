@@ -2,6 +2,7 @@ import Block from '../../utils/Block';
 import template from './ui.hbs';
 import { Button } from '../button';
 import { InputAvatar } from '../inputAvatar';
+import { getFormData } from '../../utils/getFormData';
 
 export class PopupEditAvatar extends Block {
   init() {
@@ -18,12 +19,7 @@ export class PopupEditAvatar extends Block {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const values = Object.values(this.children)
-      .filter((child: Block) => child instanceof InputAvatar)
-      .map((child: InputAvatar) => {
-        return [child.getName(), child.getValue()];
-      });
-    const data = Object.fromEntries(values);
+    const data = getFormData(this.getContent())
     console.log(data);
   }
 

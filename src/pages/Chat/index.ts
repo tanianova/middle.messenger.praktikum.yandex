@@ -8,6 +8,7 @@ import { ChatMessage } from '../../components/chatMessage';
 import { ButtonArrow } from '../../components/buttonArrow';
 import { Link } from '../../components/link';
 import { InputMessage } from '../../components/inputMessage';
+import { getFormData } from '../../utils/getFormData';
 
 export class ChatPage extends Block {
   init() {
@@ -32,12 +33,7 @@ export class ChatPage extends Block {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const values = Object.values(this.children)
-      .filter((child: Block) => child instanceof InputMessage)
-      .map((child: InputMessage) => {
-        return [child.getName(), child.getValue()];
-      });
-    const data = Object.fromEntries(values);
+    const data = getFormData(this.getContent())
     console.log(data);
   }
 

@@ -1,18 +1,26 @@
 import Block from '../../utils/Block';
 import template from './ui.hbs';
 import { Button } from '../../components/button';
-import { Input } from '../../components/input';
 import { Link } from '../../components/link';
+import { InputField } from '../../components/inputField';
+import { getFormData } from '../../utils/getFormData';
 
 export class AuthPage extends Block {
   init() {
-    this.children.loginInput = new Input({
+    this.children.loginInput = new InputField({
       type: 'text',
       name: 'login',
       label: 'Логин',
       required: true,
+      events: {
+        focus: () => {
+        },
+        blur: (event) => {
+          console.log('blur', (event.target as HTMLInputElement)?.value);
+        },
+      },
     });
-    this.children.passwordInput = new Input({
+    this.children.passwordInput = new InputField({
       type: 'password',
       name: 'password',
       label: 'Пароль',
@@ -34,12 +42,7 @@ export class AuthPage extends Block {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const values = Object.values(this.children)
-      .filter((child: Block) => child instanceof Input)
-      .map((child: Input) => {
-        return [child.getName(), child.getValue()];
-      });
-    const data = Object.fromEntries(values);
+    const data = getFormData(this.getContent())
     console.log(data);
   }
 

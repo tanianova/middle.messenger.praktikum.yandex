@@ -1,7 +1,7 @@
 import { Navigation } from '../components/navigation';
 import Block from './Block';
 
-export const RenderDom = (block: Block) => {
+export const renderDom = (block: Block) => {
   const root = document.querySelector('#app')!;
   root.innerHTML = '';
 

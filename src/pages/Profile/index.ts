@@ -3,10 +3,10 @@ import template from './ui.hbs';
 import { profileInputs } from './const';
 
 import { ButtonArrow } from '../../components/buttonArrow';
-import { Input } from '../../components/input';
 import { Avatar } from '../../components/avatar';
 import { PopupEditAvatar } from '../../components/popupEditAvatar';
 import { Link } from '../../components/link';
+import { InputField } from '../../components/inputField';
 
 export class ProfilePage extends Block {
   init() {
@@ -14,7 +14,7 @@ export class ProfilePage extends Block {
       type: 'button',
     });
     this.children.avatar = new Avatar({});
-    this.children.profileInputs = profileInputs.map(input => new Input({ ...input }));
+    this.children.profileInputs = profileInputs.map(input => new InputField({ ...input }));
     this.children.editInfoLink = new Link({
       text: 'Изменить данные',
       href: '/profile/edit_info',

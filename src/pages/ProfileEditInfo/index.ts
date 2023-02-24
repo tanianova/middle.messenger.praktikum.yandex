@@ -2,9 +2,10 @@ import Block from '../../utils/Block';
 import template from './ui.hbs';
 import { ButtonArrow } from '../../components/buttonArrow';
 import { Avatar } from '../../components/avatar';
-import { Input } from '../../components/input';
 import { editInfoInputs } from './const';
 import { Button } from '../../components/button';
+import { InputField } from '../../components/inputField';
+import { getFormData } from '../../utils/getFormData';
 
 export class ProfileEditInfoPage extends Block {
   init() {
@@ -12,7 +13,7 @@ export class ProfileEditInfoPage extends Block {
       type: 'button',
     });
     this.children.avatar = new Avatar({ class: 'avatar-edit' });
-    this.children.editInfoInputs = editInfoInputs.map(input => new Input({ ...input }));
+    this.children.editInfoInputs = editInfoInputs.map(input => new InputField({ ...input }));
     this.children.button = new Button({
       text: 'Сохранить',
       type: 'submit',
@@ -25,16 +26,7 @@ export class ProfileEditInfoPage extends Block {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const inputs: string[][] = [];
-    Object.values(this.children)
-      .filter((child: Block) => Array.isArray(child))
-      .map((child: Input[]) => {
-        child.map(input => {
-          inputs.push([input.getName(), input.getValue()]);
-        });
-      });
-
-    const data = Object.fromEntries(inputs);
+    const data = getFormData(this.getContent())
     console.log(data);
   }
 

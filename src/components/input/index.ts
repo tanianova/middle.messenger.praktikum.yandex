@@ -1,20 +1,12 @@
 import Block from '../../utils/Block';
-import { InputProps } from './types';
 import template from './ui.hbs';
+import { InputFieldProps } from '../inputField/types';
 
 export class Input extends Block {
-  input = this.element.children[0].children[0] as HTMLInputElement;
+  input = this.element as HTMLInputElement;
 
-  constructor(props: InputProps) {
+  constructor(props: Record<string, InputFieldProps>) {
     super(props);
-  }
-
-  getName() {
-    return this.input.name;
-  }
-
-  getValue() {
-    return this.input.value;
   }
 
   render() {

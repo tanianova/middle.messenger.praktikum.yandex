@@ -1,4 +1,4 @@
-import { RenderDom } from './utils/RenderDom';
+import { renderDom } from './utils/renderDom';
 import './styles/index.pcss';
 import { AuthPage } from './pages/Auth';
 import { Error404Page } from './pages/404';
@@ -26,5 +26,5 @@ export const ROUTES: Route = {
 const pageToRender = ROUTES[window.location.pathname];
 
 window.addEventListener('DOMContentLoaded', () => {
-  RenderDom(new pageToRender());
+  renderDom(new pageToRender());
 });
