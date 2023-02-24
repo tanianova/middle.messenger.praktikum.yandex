@@ -1,4 +1,4 @@
-import { validateInput } from './validate';
+import { validateInput } from './validateInput';
 
 /**
  * @description функция проверяет поля инпутов на валидацию и возвращает все данные из формы в виде объекта

@@ -1,14 +1,14 @@
 import { INPUT_NAME } from './const';
 
 const isValid = (input: HTMLInputElement): boolean => {
-  if (!input.value || input.value === '') {
+  if (input.required && (!input.value || input.value === '')) {
     return false;
   }
   const name = /^[A-ZЁА-Я][A-Za-zЁёА-Яа-я-]*$/;
   const login = /^(?=.*[A-Za-z])[A-Za-z\d-_]{3,20}$/;
-  const email = /^[A-Za-z\d._%+-]+@[A-Za-z]+\.[A-Za-z]+$/;
+  const email = /^\S+@\S+\.([A-Za-z]{2,4})$/;
   const password = /^(?=.*[A-Z])(?=.*\d).{8,40}$/;
-  const phone = /^\+?\d{10,15}$/;
+  const phone = /^[\d+][\d() -]{10,15}\d$/;
   const message = /^.+$/;
 
   switch (input.name) {
@@ -20,6 +20,8 @@ const isValid = (input: HTMLInputElement): boolean => {
     case INPUT_NAME.email:
       return email.test(input.value);
     case INPUT_NAME.password:
+    case INPUT_NAME.oldPassword:
+    case INPUT_NAME.newPassword:
       return password.test(input.value);
     case INPUT_NAME.phone:
       return phone.test(input.value);
@@ -40,10 +42,14 @@ const isValid = (input: HTMLInputElement): boolean => {
 export const validateInput = (input: HTMLInputElement): boolean => {
   const error = input?.parentNode?.parentNode?.querySelector('p') as HTMLElement;
   if (isValid(input)) {
-    error.style.display = 'none';
+    if (error) {
+      error.style.display = 'none';
+    }
     return true;
   } else {
-    error.style.display = 'block';
+    if (error) {
+      error.style.display = 'block';
+    }
     return false;
   }
 };

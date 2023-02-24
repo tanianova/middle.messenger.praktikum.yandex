@@ -6,6 +6,9 @@ export const INPUT_NAME = {
   password: 'password',
   phone: 'phone',
   message: 'message',
+  display_name: 'display_name',
+  oldPassword: 'oldPassword',
+  newPassword: 'newPassword',
 };
 
 export const ERROR_MESSAGE = {
@@ -14,4 +17,5 @@ export const ERROR_MESSAGE = {
   email: 'Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы.',
   password: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.',
   phone: 'От 10 до 15 символов, состоит из цифр, может начинается с плюса.',
+  isRequired: 'Поле обязательно для заполнения ',
 };

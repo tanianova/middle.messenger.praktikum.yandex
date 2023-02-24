@@ -9,6 +9,7 @@ import { ButtonArrow } from '../../components/buttonArrow';
 import { Link } from '../../components/link';
 import { InputMessage } from '../../components/inputMessage';
 import { getFormData } from '../../utils/getFormData';
+import { validateInput } from '../../utils/validateInput';
 
 export class ChatPage extends Block {
   init() {
@@ -28,12 +29,19 @@ export class ChatPage extends Block {
         click: (e: Event) => this.onSubmit(e),
       },
     });
-    this.children.inputMessage = new InputMessage();
+    this.children.inputMessage = new InputMessage({
+      events: {
+        blur: (event: Event) => {
+          const input = event.target as HTMLInputElement;
+          validateInput(input);
+        },
+      },
+    });
   }
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const data = getFormData(this.getContent())
+    const data = getFormData(this.getContent());
     console.log(data);
   }
 

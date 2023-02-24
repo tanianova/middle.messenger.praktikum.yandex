@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE, INPUT_NAME } from '../../utils/const';
-import { validateInput } from '../../utils/validate';
+import { validateInput } from '../../utils/validateInput';
 
 export const authInputs = [
   {
