@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc:check": "tsc -b tsconfig.json",
     "lint": "eslint --ext .ts src/",
-    "fix-lint": "eslint --ext .ts  src --fix"
+    "stylelint": "stylelint \"src/**/*.{pcss,.pcss}\"",
+    "fix-lint": "eslint --ext .ts  src --fix",
+    "fix-stylelint": "stylelint \"src/**/*.{pcss,.pcss}\" --fix"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +36,7 @@
     "punycode": "^1.4.1",
     "querystring-es3": "^0.2.1",
     "stylelint": "15.1.0",
+    "stylelint-config-standard": "30.0.1",
     "typescript": "4.9.5",
     "url": "^0.11.0"
   }
