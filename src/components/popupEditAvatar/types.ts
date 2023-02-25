@@ -1,4 +1,3 @@
-export interface AvatarProps {
-  class?: string;
+export interface PopupEditAvatarProps{
   events?: Record<string, EventListenerOrEventListenerObject>;
 }

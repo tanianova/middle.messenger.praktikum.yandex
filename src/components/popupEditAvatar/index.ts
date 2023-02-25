@@ -3,8 +3,13 @@ import template from './ui.hbs';
 import { Button } from '../button';
 import { InputAvatar } from '../inputAvatar';
 import { getFormData } from '../../utils/getFormData';
+import { PopupEditAvatarProps } from './types';
+import { ButtonClose } from '../buttonClose';
 
 export class PopupEditAvatar extends Block {
+  constructor(props: PopupEditAvatarProps) {
+    super(props);
+  }
   init() {
     this.children.button = new Button({
       text: 'Поменять',
@@ -15,6 +20,9 @@ export class PopupEditAvatar extends Block {
       },
     });
     this.children.inputAvatar = new InputAvatar()
+    this.children.closeButton = new ButtonClose({
+      events: this.props.events
+    })
   }
 
   onSubmit(e: Event) {

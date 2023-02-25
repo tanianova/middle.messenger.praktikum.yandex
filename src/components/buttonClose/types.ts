@@ -1,4 +1,3 @@
-export interface AvatarProps {
-  class?: string;
+export interface ButtonCloseProps {
   events?: Record<string, EventListenerOrEventListenerObject>;
 }

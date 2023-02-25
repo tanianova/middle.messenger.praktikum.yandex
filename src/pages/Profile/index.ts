@@ -4,7 +4,6 @@ import { profileInputs } from './const';
 
 import { ButtonArrow } from '../../components/buttonArrow';
 import { Avatar } from '../../components/avatar';
-import { PopupEditAvatar } from '../../components/popupEditAvatar';
 import { Link } from '../../components/link';
 import { InputField } from '../../components/inputField';
 
@@ -30,7 +29,6 @@ export class ProfilePage extends Block {
       href: '/',
       class: 'profile__link link-danger',
     });
-    this.children.popup = new PopupEditAvatar();
   }
 
   render() {
