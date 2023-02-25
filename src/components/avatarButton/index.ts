@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
-import template from '../avatarButton/ui.hbs';
-import { AvatarProps } from '../avatar/types';
+import Block from "../../utils/Block";
+import template from "../avatarButton/ui.hbs";
+import { AvatarProps } from "../avatar/types";
 
 export class AvatarButton extends Block {
   constructor(props: AvatarProps) {

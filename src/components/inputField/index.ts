@@ -1,8 +1,8 @@
-import Block from '../../utils/Block';
-import { InputFieldProps } from './types';
-import template from './ui.hbs';
-import { Input } from '../input';
-import { ErrorMessage } from '../errorMessage';
+import Block from "../../utils/Block";
+import { InputFieldProps } from "./types";
+import template from "./ui.hbs";
+import { Input } from "../input";
+import { ErrorMessage } from "../errorMessage";
 
 export class InputField extends Block {
   constructor(props: InputFieldProps) {

@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
-import { InputMessageProps } from './types';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
+import { InputMessageProps } from "./types";
 
 export class InputMessage extends Block {
   constructor(props: InputMessageProps) {

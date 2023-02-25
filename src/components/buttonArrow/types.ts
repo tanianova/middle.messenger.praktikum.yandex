@@ -1,5 +1,5 @@
 export interface ButtonArrowProps {
-  type: 'submit' | 'button';
+  type: "submit" | "button";
   class?: string;
   events?: Record<string, EventListenerOrEventListenerObject>;
 }

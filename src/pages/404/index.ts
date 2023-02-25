@@ -1,12 +1,12 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
-import { Link } from '../../components/link';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
+import { Link } from "../../components/link";
 
 export class Error404Page extends Block {
   init() {
     this.children.chatLink = new Link({
-      text: 'Назад к чатам',
-      href: '/chat',
+      text: "Назад к чатам",
+      href: "/chat",
     });
   }
 

@@ -1,7 +1,7 @@
-import { INPUT_NAME } from './const';
+import { INPUT_NAME } from "./const";
 
 const isValid = (input: HTMLInputElement): boolean => {
-  if (input.required && (!input.value || input.value === '')) {
+  if (input.required && (!input.value || input.value === "")) {
     return false;
   }
   const name = /^[A-ZЁА-Я][A-Za-zЁёА-Яа-я-]*$/;
@@ -40,15 +40,15 @@ const isValid = (input: HTMLInputElement): boolean => {
  * @returns {boolean}
  */
 export const validateInput = (input: HTMLInputElement): boolean => {
-  const error = input?.parentNode?.parentNode?.querySelector('p') as HTMLElement;
+  const error = input?.parentNode?.parentNode?.querySelector("p") as HTMLElement;
   if (isValid(input)) {
     if (error) {
-      error.style.display = 'none';
+      error.style.display = "none";
     }
     return true;
   } else {
     if (error) {
-      error.style.display = 'block';
+      error.style.display = "block";
     }
     return false;
   }

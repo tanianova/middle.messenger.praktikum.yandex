@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
-import { ButtonCloseProps } from './types';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
+import { ButtonCloseProps } from "./types";
 
 export class ButtonClose extends Block {
   constructor(props: ButtonCloseProps) {

@@ -1,5 +1,5 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
 
 export class InputAvatar extends Block {
   render() {

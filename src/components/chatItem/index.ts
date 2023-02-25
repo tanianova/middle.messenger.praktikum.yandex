@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
-import { ChatItemProps } from './types';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
+import { ChatItemProps } from "./types";
 
 export class ChatItem extends Block {
   constructor(props: ChatItemProps) {

@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
-import { InputFieldProps } from '../inputField/types';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
+import { InputFieldProps } from "../inputField/types";
 
 export class Input extends Block {
   input = this.element as HTMLInputElement;

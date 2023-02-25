@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
-import template from './ui.hbs';
-import { ErrorMessageProps } from './types';
+import Block from "../../utils/Block";
+import template from "./ui.hbs";
+import { ErrorMessageProps } from "./types";
 
 export class ErrorMessage extends Block {
   constructor(props: ErrorMessageProps) {

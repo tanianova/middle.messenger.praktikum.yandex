@@ -1,11 +1,11 @@
-import { ERROR_MESSAGE, INPUT_NAME } from '../../utils/const';
-import { validateInput } from '../../utils/validateInput';
+import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
+import { validateInput } from "../../utils/validateInput";
 
 export const authInputs = [
   {
-    type: 'text',
+    type: "text",
     name: INPUT_NAME.login,
-    label: 'Логин',
+    label: "Логин",
     required: true,
     events: {
       blur: (event: Event) => {
@@ -16,9 +16,9 @@ export const authInputs = [
     errorMessage: ERROR_MESSAGE.login,
   },
   {
-    type: 'password',
+    type: "password",
     name: INPUT_NAME.password,
-    label: 'Пароль',
+    label: "Пароль",
     required: true,
     events: {
       blur: (event: Event) => {

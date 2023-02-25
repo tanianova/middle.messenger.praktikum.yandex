@@ -1,4 +1,4 @@
-import { validateInput } from './validateInput';
+import { validateInput } from "./validateInput";
 
 /**
  * @description функция проверяет поля инпутов на валидацию и возвращает все данные из формы в виде объекта
@@ -6,7 +6,7 @@ import { validateInput } from './validateInput';
  */
 export const getFormData = (element: HTMLElement) => {
   const inputs = (Array.from(element
-    .querySelectorAll('input')));
+    .querySelectorAll("input")));
   const values = inputs.filter(input => input.name)
     .map(input => {
       validateInput(input);

@@ -1,15 +1,15 @@
-import { EventBus } from './EventBus';
-import { nanoid } from 'nanoid';
+import { EventBus } from "./EventBus";
+import { nanoid } from "nanoid";
 
 export type TProps = Record<string, any>
 
 // Нельзя создавать экземпляр данного класса
 class Block {
   static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
+    FLOW_RENDER: "flow:render",
   };
 
   public id = nanoid(6);
@@ -37,7 +37,7 @@ class Block {
   }
 
   private _getChildrenAndProps(childrenAndProps: TProps) {
-    const props: Record<string, any> = {};
+    const props: TProps = {};
     const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps)
@@ -100,7 +100,7 @@ class Block {
     this.componentDidMount();
   }
 
-  componentDidMount() {
+  public componentDidMount() {
   }
 
   public dispatchComponentDidMount() {
@@ -169,12 +169,12 @@ class Block {
 
     const html = template(contextAndStubs);
 
-    const temp = document.createElement('template');
+    const temp = document.createElement("template");
 
     temp.innerHTML = html;
 
     Object.entries(this.children)
-      .forEach(([_, component]) => {
+      .forEach(([, component]) => {
         if (Array.isArray(component)) {
           component.forEach(child => {
             const stub = temp.content.querySelector(`[data-id="${child.id}"]`);
@@ -221,7 +221,7 @@ class Block {
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
+        return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop: string, value) {
         const oldTarget = { ...target };
@@ -235,17 +235,17 @@ class Block {
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
+        throw new Error("Нет доступа");
       },
     });
   }
 
   show() {
-    this.getContent()!.style.display = 'block';
+    this.getContent()!.style.display = "block";
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    this.getContent()!.style.display = "none";
   }
 }
 

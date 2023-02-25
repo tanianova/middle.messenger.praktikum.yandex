@@ -1,11 +1,11 @@
-import { ERROR_MESSAGE, INPUT_NAME } from '../../utils/const';
-import { validateInput } from '../../utils/validateInput';
+import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
+import { validateInput } from "../../utils/validateInput";
 
 export const registerInputs = [
   {
-    type: 'email',
+    type: "email",
     name: INPUT_NAME.email,
-    label: 'Почта',
+    label: "Почта",
     required: true,
     events: {
       blur: (event: Event) => {
@@ -16,9 +16,9 @@ export const registerInputs = [
     errorMessage: ERROR_MESSAGE.email,
   },
   {
-    type: 'text',
+    type: "text",
     name: INPUT_NAME.login,
-    label: 'Логин',
+    label: "Логин",
     required: true,
     events: {
       blur: (event: Event) => {
@@ -29,9 +29,9 @@ export const registerInputs = [
     errorMessage: ERROR_MESSAGE.login,
   },
   {
-    type: 'text',
+    type: "text",
     name: INPUT_NAME.first_name,
-    label: 'Имя',
+    label: "Имя",
     required: true,
     events: {
       blur: (event: Event) => {
@@ -42,9 +42,9 @@ export const registerInputs = [
     errorMessage: ERROR_MESSAGE.name,
   },
   {
-    type: 'text',
+    type: "text",
     name: INPUT_NAME.second_name,
-    label: 'Фамилия',
+    label: "Фамилия",
     required: true,
     events: {
       blur: (event: Event) => {
@@ -55,9 +55,9 @@ export const registerInputs = [
     errorMessage: ERROR_MESSAGE.name,
   },
   {
-    type: 'tel',
+    type: "tel",
     name: INPUT_NAME.phone,
-    label: 'Телефон',
+    label: "Телефон",
     required: true,
     events: {
       blur: (event: Event) => {
@@ -68,9 +68,9 @@ export const registerInputs = [
     errorMessage: ERROR_MESSAGE.phone,
   },
   {
-    type: 'password',
+    type: "password",
     name: INPUT_NAME.password,
-    label: 'Пароль',
+    label: "Пароль",
     required: true,
     events: {
       blur: (event: Event) => {

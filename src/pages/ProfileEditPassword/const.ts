@@ -1,12 +1,12 @@
-import { ERROR_MESSAGE, INPUT_NAME } from '../../utils/const';
-import { validateInput } from '../../utils/validateInput';
+import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
+import { validateInput } from "../../utils/validateInput";
 
 export const editPasswordInputs = [
   {
-    type: 'password',
+    type: "password",
     name: INPUT_NAME.oldPassword,
-    label: 'Старый пароль',
-    value: 'ivanivanov',
+    label: "Старый пароль",
+    value: "ivanivanov",
     events: {
       blur: (event: Event) => {
         const input = event.target as HTMLInputElement;
@@ -16,10 +16,10 @@ export const editPasswordInputs = [
     errorMessage: ERROR_MESSAGE.password,
   },
   {
-    type: 'password',
+    type: "password",
     name: INPUT_NAME.newPassword,
-    label: 'Новый пароль',
-    value: 'ivanivanov',
+    label: "Новый пароль",
+    value: "ivanivanov",
     events: {
       blur: (event: Event) => {
         const input = event.target as HTMLInputElement;
