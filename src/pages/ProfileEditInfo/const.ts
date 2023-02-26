@@ -1,5 +1,4 @@
 import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
-import { validateInput } from "../../utils/validateInput";
 
 export const editInfoInputs = [
   {
@@ -8,9 +7,6 @@ export const editInfoInputs = [
     label: "Почта",
     value: "pochta@yandex.ru",
     required: true,
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.email,
   },
   {
@@ -19,9 +15,6 @@ export const editInfoInputs = [
     label: "Логин",
     value: "ivanivanov",
     required: true,
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.login,
   },
   {
@@ -30,9 +23,6 @@ export const editInfoInputs = [
     label: "Имя",
     value: "Иван",
     required: true,
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.name,
   },
   {
@@ -41,9 +31,6 @@ export const editInfoInputs = [
     label: "Фамилия",
     value: "Иванов",
     required: true,
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.name,
   },
   {
@@ -52,9 +39,6 @@ export const editInfoInputs = [
     label: "Имя в чате",
     value: "Иван",
     required: true,
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.isRequired,
   },
   {
@@ -63,9 +47,6 @@ export const editInfoInputs = [
     label: "Телефон",
     value: "+7(909)9673030",
     required: true,
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.phone,
   },
 ];

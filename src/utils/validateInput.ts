@@ -39,8 +39,13 @@ const isValid = (input: HTMLInputElement): boolean => {
  * @param {Event} event - событие на поле инпута
  * @returns {boolean}
  */
-export const validateInput = (event: Event): boolean => {
-  const input = event.target as HTMLInputElement;
+export const validateInput = (event: Event | HTMLInputElement): boolean => {
+  let input;
+  if (event instanceof HTMLElement) {
+    input = event;
+  } else {
+    input = event.target as HTMLInputElement;
+  }
   const error = input?.parentNode?.parentNode?.querySelector("p") as HTMLElement;
   if (isValid(input)) {
     if (error) {

@@ -1,5 +1,4 @@
 import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
-import { validateInput } from "../../utils/validateInput";
 
 export const editPasswordInputs = [
   {
@@ -7,9 +6,6 @@ export const editPasswordInputs = [
     name: INPUT_NAME.oldPassword,
     label: "Старый пароль",
     value: "ivanivanov",
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.password,
   },
   {
@@ -17,9 +13,6 @@ export const editPasswordInputs = [
     name: INPUT_NAME.newPassword,
     label: "Новый пароль",
     value: "ivanivanov",
-    events: {
-      blur: validateInput,
-    },
     errorMessage: ERROR_MESSAGE.password,
   },
 ];

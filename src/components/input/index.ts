@@ -1,12 +1,16 @@
 import Block from "../../utils/Block";
 import template from "./ui.hbs";
 import { InputFieldProps } from "../inputField/types";
+import { validateInput } from "../../utils/validateInput";
 
 export class Input extends Block {
-  input = this.element as HTMLInputElement;
-
   constructor(props: Record<string, InputFieldProps>) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        blur: validateInput,
+      },
+    });
   }
 
   render() {
