@@ -8,10 +8,7 @@ export const authInputs = [
     label: "Логин",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.login,
   },
@@ -21,10 +18,7 @@ export const authInputs = [
     label: "Пароль",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.password,
   },

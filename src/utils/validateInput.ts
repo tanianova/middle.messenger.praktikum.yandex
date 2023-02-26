@@ -36,10 +36,11 @@ const isValid = (input: HTMLInputElement): boolean => {
 /**
  * @description функция возвращает булево значение для инпута(валидно/невалидно),
  * а так же показывает сообщение об ошибке под полем инпута
- * @param {HTMLInputElement} input - элемент(в нашем случае страница), в котором будем искать все инпуты
+ * @param {Event} event - событие на поле инпута
  * @returns {boolean}
  */
-export const validateInput = (input: HTMLInputElement): boolean => {
+export const validateInput = (event: Event): boolean => {
+  const input = event.target as HTMLInputElement;
   const error = input?.parentNode?.parentNode?.querySelector("p") as HTMLElement;
   if (isValid(input)) {
     if (error) {

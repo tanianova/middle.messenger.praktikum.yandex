@@ -8,10 +8,7 @@ export const editPasswordInputs = [
     label: "Старый пароль",
     value: "ivanivanov",
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.password,
   },
@@ -21,10 +18,7 @@ export const editPasswordInputs = [
     label: "Новый пароль",
     value: "ivanivanov",
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.password,
   },

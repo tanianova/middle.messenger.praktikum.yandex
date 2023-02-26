@@ -3,14 +3,13 @@ import { nanoid } from "nanoid";
 
 export type TProps = Record<string, any>
 
-// Нельзя создавать экземпляр данного класса
-class Block {
+abstract class Block {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render",
-  };
+  } as const;
 
   public id = nanoid(6);
   protected props: TProps;

@@ -8,10 +8,7 @@ export const registerInputs = [
     label: "Почта",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.email,
   },
@@ -21,10 +18,7 @@ export const registerInputs = [
     label: "Логин",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.login,
   },
@@ -34,10 +28,7 @@ export const registerInputs = [
     label: "Имя",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.name,
   },
@@ -47,10 +38,7 @@ export const registerInputs = [
     label: "Фамилия",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.name,
   },
@@ -60,10 +48,7 @@ export const registerInputs = [
     label: "Телефон",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.phone,
   },
@@ -73,10 +58,7 @@ export const registerInputs = [
     label: "Пароль",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput
     },
     errorMessage: ERROR_MESSAGE.password,
   },

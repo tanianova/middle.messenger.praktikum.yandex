@@ -9,10 +9,7 @@ export const editInfoInputs = [
     value: "pochta@yandex.ru",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.email,
   },
@@ -23,10 +20,7 @@ export const editInfoInputs = [
     value: "ivanivanov",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.login,
   },
@@ -37,10 +31,7 @@ export const editInfoInputs = [
     value: "Иван",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.name,
   },
@@ -51,10 +42,7 @@ export const editInfoInputs = [
     value: "Иванов",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.name,
   },
@@ -65,10 +53,7 @@ export const editInfoInputs = [
     value: "Иван",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.isRequired,
   },
@@ -79,10 +64,7 @@ export const editInfoInputs = [
     value: "+7(909)9673030",
     required: true,
     events: {
-      blur: (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        validateInput(input);
-      },
+      blur: validateInput,
     },
     errorMessage: ERROR_MESSAGE.phone,
   },
