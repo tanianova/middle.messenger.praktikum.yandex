@@ -1,5 +1,3 @@
-// eslint-expect-error-next-line
-// @ts-ignore
 import img from "../../../static/img/ava.jpeg";
 
 export const chatList = [

@@ -1,9 +1,16 @@
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
 
-export type TProps = Record<string, any>
+type BlockEvents<P = any> = {
+  init: [];
+  "flow:component-did-mount": [];
+  "flow:component-did-update": [P, P];
+  "flow:render": [];
+}
 
-abstract class Block {
+type Props<P extends Record<string, unknown> = any> = { events?: Record<string, () => void> } & P;
+
+abstract class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -12,13 +19,13 @@ abstract class Block {
   } as const;
 
   public id = nanoid(6);
-  protected props: TProps;
+  protected props: Props<P>;
   public children: Record<string, Block | Block[]>;
-  private eventBus: () => EventBus;
+  private eventBus: () => EventBus<BlockEvents<Props<P>>>;
   private _element: HTMLElement | null = null;
 
-  constructor(propsWithChildren: TProps = {}) {
-    const eventBus = new EventBus();
+  constructor(propsWithChildren: Props<P> = {} as Props<P>) {
+    const eventBus = new EventBus<BlockEvents<Props<P>>>();
 
     const {
       props,
@@ -35,8 +42,8 @@ abstract class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: TProps) {
-    const props: TProps = {};
+  private _getChildrenAndProps(childrenAndProps: Props<P>): { props: Props<P>, children: Record<string, Block | Block[]> } {
+    const props = {} as Record<string, unknown>;
     const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps)
@@ -51,13 +58,13 @@ abstract class Block {
       });
 
     return {
-      props,
+      props: props as Props<P>,
       children,
     };
   }
 
   private _addEvents() {
-    const { events = {} } = this.props as { events: Record<string, () => void> };
+    const { events = {} } = this.props;
 
     Object.keys(events)
       .forEach((eventName) => {
@@ -78,7 +85,7 @@ abstract class Block {
       });
   }
 
-  _registerEvents(eventBus: EventBus) {
+  _registerEvents(eventBus: EventBus<BlockEvents>) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -128,7 +135,7 @@ abstract class Block {
     return true;
   }
 
-  setProps = (nextProps: TProps) => {
+  setProps = (nextProps: Partial<Props<P>>) => {
     if (!nextProps) {
       return;
     }
@@ -137,7 +144,7 @@ abstract class Block {
   };
 
   get element() {
-    return this._element as HTMLElement;
+    return this._element;
   }
 
   private _render() {
@@ -153,7 +160,7 @@ abstract class Block {
     this._addEvents();
   }
 
-  protected compile(template: (context: TProps) => string, context: TProps) {
+  protected compile(template: (context: Props) => string, context: Props) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children)
@@ -213,7 +220,7 @@ abstract class Block {
     return this.element;
   }
 
-  private _makePropsProxy(props: TProps) {
+  private _makePropsProxy(props: Props<P>) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
@@ -225,7 +232,7 @@ abstract class Block {
       set(target, prop: string, value) {
         const oldTarget = { ...target };
 
-        target[prop] = value;
+        target[prop as keyof Props<P>] = value;
 
         // Запускаем обновление компоненты
         // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
