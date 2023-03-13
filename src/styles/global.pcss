@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   border: none;
-  font-family: "Inter", sans-serif;
+  font-family: Inter, sans-serif;
   color: $txt-primary;
 }
 
@@ -43,16 +43,16 @@ span {
 }
 
 h1, .h1 {
-  font: 500 40px/150% "Inter", sans-serif;
+  font: 500 40px/150% Inter, sans-serif;
 }
 
 h4, .h4 {
-  font: 500 20px/150% "Inter", sans-serif;
+  font: 500 20px/150% Inter, sans-serif;
   padding-bottom: 20px;
 }
 
 h5, .h5 {
-  font: 600 16px/150% "Inter", sans-serif;
+  font: 600 16px/150% Inter, sans-serif;
   padding-bottom: 20px;
 }
 
@@ -84,6 +84,11 @@ button {
   letter-spacing: normal;
 }
 
+.header {
+  padding: 20px 0;
+  border-bottom: 1px solid $line;
+}
+
 .center {
   display: flex;
   flex-direction: column;
@@ -104,18 +109,17 @@ button {
   box-shadow: 0 0 6px $shadow;
 }
 
-.popup {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 66px;
-  bottom: calc(100% - 66px);
-  z-index: 100;
-  background: #f7f6f5;
-  overflow: hidden;
-  transform: translateZ(0px);
-  -webkit-transform: translateZ(0px);
-  -moz-transform: translateZ(0px);
-  -ms-transform: translateZ(0px);
-  -o-transform: translateZ(0px);
+.error-page {
+  &__desc {
+    padding-bottom: 64px;
+  }
 }
+
+.link-back {
+  width: 5%;
+  background-color: $fill-light-grey;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+

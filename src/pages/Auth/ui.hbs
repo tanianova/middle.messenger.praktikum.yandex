@@ -1,0 +1,15 @@
+<div class="center">
+  <section class="form__wrapper auth">
+    <form action="">
+      <h4 class="auth__title">Вход</h4>
+      <div class="auth__fields">
+        {{#each authInputs}}
+          {{{this}}}
+        {{/each}}
+      </div>
+      {{{authButton}}}
+      {{{registrationLink}}}
+    </form>
+  </section>
+</div>
+

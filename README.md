@@ -10,8 +10,8 @@
 ### Ссылки
 
 - [Макет от Яндекса](https://www.figma.com/file/EkMZIxZwJpBCZvioBrufF3/Chat_external_link-(Copy)?node-id=0%3A1&t=Nee54Oi8y8CjaRkf-0)
-- [Деплой на Netlify](https://dulcet-mandazi-025f74.netlify.app/)
-- [Pull Request 1](https://github.com/tanianova/middle.messenger.praktikum.yandex/pull/2)
+- [Деплой на Netlify](https://deploy-preview-3--dulcet-mandazi-025f74.netlify.app)
+- [Pull Request 2](https://github.com/tanianova/middle.messenger.praktikum.yandex/pull/3)
 
 ### Используемые технологии
 - Parcel
