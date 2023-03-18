@@ -5,6 +5,7 @@ import { Button } from "../../components/button";
 import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
 import { getFormData } from "../../utils/getFormData";
+import { Routes } from "../../index";
 
 export class RegisterPage extends Block {
   init() {
@@ -19,7 +20,7 @@ export class RegisterPage extends Block {
     });
     this.children.link = new Link({
       text: "Войти",
-      href: "/chat",
+      to: Routes.Chat,
     });
   }
 

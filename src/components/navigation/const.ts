@@ -1,26 +1,28 @@
+import { Routes } from "../../index";
+
 export const links = [
   {
     text: "Вход",
-    href: "/",
+    to: Routes.Auth,
   }, {
     text: "404",
-    href: "/404",
+    to: Routes.Error404,
   }, {
     text: "500",
-    href: "/500",
+    to: Routes.Error500,
   }, {
     text: "Чаты",
-    href: "/chat",
+    to: Routes.Chat,
   }, {
     text: "Регистрация",
-    href: "/register",
+    to: Routes.Register,
   }, {
     text: "Профиль",
-    href: "/profile",
+    to: Routes.Profile,
   }, {
     text: "Изменить инфо",
-    href: "/profile/edit_info",
+    to: Routes.EditInfo,
   }, {
     text: "Изменить пароль",
-    href: "/profile/edit_password",
+    to: Routes.EditPassword,
   }];

@@ -2,8 +2,9 @@ import Block from "../../utils/Block";
 import { LinkProps } from "./types";
 import template from "./ui.hbs";
 import { withRouter } from "../../hocs/withRouter";
+import { ButtonArrow } from "../buttonArrow";
 
-class BaseLink extends Block<LinkProps> {
+class Link extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({
       ...props,
@@ -15,9 +16,15 @@ class BaseLink extends Block<LinkProps> {
     this.props.router.go(this.props.to);
   }
 
+  init() {
+    this.children.buttonArrow = new ButtonArrow({
+      type: "button",
+    });
+  }
+
   render() {
     return this.compile(template, this.props);
   }
 }
 
-export const Link = withRouter(BaseLink);
+export const LinkToChat = withRouter(Link);

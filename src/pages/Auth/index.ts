@@ -5,6 +5,7 @@ import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
 import { getFormData } from "../../utils/getFormData";
 import { authInputs } from "./const";
+import { Routes } from "../../index";
 
 export class AuthPage extends Block {
   init() {
@@ -19,7 +20,7 @@ export class AuthPage extends Block {
     });
     this.children.registrationLink = new Link({
       text: "Нет аккаунта?",
-      href: "/register",
+      to: Routes.Register,
     });
   }
 

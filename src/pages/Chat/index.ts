@@ -9,6 +9,7 @@ import { ButtonArrow } from "../../components/buttonArrow";
 import { Link } from "../../components/link";
 import { InputMessage } from "../../components/inputMessage";
 import { getFormData } from "../../utils/getFormData";
+import { Routes } from "../../index";
 
 export class ChatPage extends Block {
   init() {
@@ -16,7 +17,7 @@ export class ChatPage extends Block {
     this.children.profileLink = new Link({
       text: "Профиль",
       class: "chat-link",
-      href: "/profile",
+      to: Routes.Profile,
     });
     this.children.searchInput = new SearchInput();
     this.children.chatList = chatList.map(chat => new ChatItem({ ...chat }));
