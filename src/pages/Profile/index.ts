@@ -7,12 +7,15 @@ import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
 import { Routes } from "../../index";
 import { LinkToChat } from "../../components/linkToChat";
+import AuthController from "../../controllers/AuthController";
+import { withStore } from "../../hocs/withStore";
+import { Button } from "../../components/button";
 
-export class ProfilePage extends Block {
+class ProfilePageBase extends Block {
   init() {
     this.children.linkToChat = new LinkToChat({
-      to: Routes.Chat
-    })
+      to: Routes.Chat,
+    });
     this.children.avatar = new Avatar({});
     this.children.profileInputs = profileInputs.map(input => new InputField({ ...input }));
     this.children.editInfoLink = new Link({
@@ -25,10 +28,15 @@ export class ProfilePage extends Block {
       to: Routes.EditPassword,
       class: "profile__link",
     });
-    this.children.exitLink = new Link({
+    this.children.exitLink = new Button({
       text: "Выйти",
-      to: Routes.Auth,
+      type:'submit',
       class: "profile__link link-danger",
+      events: {
+        click: () => {
+          AuthController.logout();
+        },
+      },
     });
   }
 
@@ -36,3 +44,7 @@ export class ProfilePage extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export const ProfilePage = withStore((state) => {
+  return state.user || {};
+})(ProfilePageBase);

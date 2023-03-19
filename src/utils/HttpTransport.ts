@@ -1,15 +1,15 @@
-enum METHODS {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  PATCH = "PATCH",
-  DELETE = "DELETE",
+enum Methods {
+  Get = "Get",
+  Post = "Post",
+  Put = "Put",
+  Patch = "Patch",
+  Delete = "Delete",
 }
 
 interface Options {
-  method: METHODS;
+  method: Methods;
   timeout?: number;
-  data?: Record<string, string>;
+  data?: unknown;
   headers?: Record<string, string>;
 }
 
@@ -21,46 +21,45 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get(path = "/") {
+  public get<Response>(path = "/"): Promise<Response> {
     return this.request<Response>(this.endpoint + path);
   }
 
-  public post<Response = void>(path: string, data?: Record<string, string>): Promise<Response> {
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: METHODS.POST,
+      method: Methods.Post,
       data,
     });
   }
 
-  public put<Response = void>(path: string, data: Record<string, string>): Promise<Response> {
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: METHODS.PUT,
+      method: Methods.Put,
       data,
     });
   }
 
-  public patch<Response = void>(path: string, data: Record<string, string>): Promise<Response> {
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: METHODS.PATCH,
+      method: Methods.Patch,
       data,
     });
   }
 
-  public delete<Response>(path: string, data?: Record<string, string>): Promise<Response> {
+  public delete<Response>(path: string): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: METHODS.DELETE,
-      data,
+      method: Methods.Delete,
     });
   }
 
-  private request<Response>(url: string, options: Options = { method: METHODS.GET }): Promise<Response> {
+  private request<Response>(url: string, options: Options = { method: Methods.Get }): Promise<Response> {
     const {
       method,
       data,
     } = options;
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method as METHODS, url);
+      xhr.open(method, url);
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -76,15 +75,14 @@ export default class HTTPTransport {
       xhr.onerror = () => reject({ reason: "network error" });
       xhr.ontimeout = () => reject({ reason: "timeout" });
 
+      xhr.setRequestHeader("Content-Type", "application/json");
+
       xhr.withCredentials = true;
       xhr.responseType = "json";
 
-      if (method === METHODS.GET || !data) {
+      if (method === Methods.Get || !data) {
         xhr.send();
-      } else if (data instanceof FormData) {
-        xhr.send(data);
       } else {
-        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(data));
       }
     });

@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
+import { ERROR_MESSAGE, INPUT_NAME } from "../../helpers/const";
 
 export const authInputs = [
   {

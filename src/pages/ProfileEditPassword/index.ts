@@ -4,7 +4,7 @@ import { Avatar } from "../../components/avatar";
 import { Button } from "../../components/button";
 import { editPasswordInputs } from "./const";
 import { InputField } from "../../components/inputField";
-import { getFormData } from "../../utils/getFormData";
+import { getFormData } from "../../helpers/getFormData";
 import { LinkToChat } from "../../components/linkToChat";
 import { Routes } from "../../index";
 

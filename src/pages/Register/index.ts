@@ -4,8 +4,9 @@ import { registerInputs } from "./const";
 import { Button } from "../../components/button";
 import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
-import { getFormData } from "../../utils/getFormData";
+import { getFormData } from "../../helpers/getFormData";
 import { Routes } from "../../index";
+import AuthController from "../../controllers/AuthController";
 
 export class RegisterPage extends Block {
   init() {
@@ -27,6 +28,7 @@ export class RegisterPage extends Block {
   onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
+    AuthController.signup(data);
     console.log(data);
   }
 

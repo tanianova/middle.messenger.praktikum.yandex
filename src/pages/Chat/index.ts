@@ -8,7 +8,7 @@ import { ChatMessage } from "../../components/chatMessage";
 import { ButtonArrow } from "../../components/buttonArrow";
 import { Link } from "../../components/link";
 import { InputMessage } from "../../components/inputMessage";
-import { getFormData } from "../../utils/getFormData";
+import { getFormData } from "../../helpers/getFormData";
 import { Routes } from "../../index";
 
 export class ChatPage extends Block {

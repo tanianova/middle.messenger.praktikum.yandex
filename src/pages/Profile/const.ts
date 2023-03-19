@@ -1,4 +1,4 @@
-import { INPUT_NAME } from "../../utils/const";
+import { INPUT_NAME } from "../../helpers/const";
 
 export const profileInputs = [
   {

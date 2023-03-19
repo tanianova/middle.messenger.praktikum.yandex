@@ -3,13 +3,15 @@ import template from "./ui.hbs";
 import { Button } from "../../components/button";
 import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
-import { getFormData } from "../../utils/getFormData";
+import { getFormData } from "../../helpers/getFormData";
 import { authInputs } from "./const";
 import { Routes } from "../../index";
+import AuthController from "../../controllers/AuthController";
+
 
 export class AuthPage extends Block {
   init() {
-    this.children.authInputs = authInputs.map(input=>new InputField({...input}));
+    this.children.authInputs = authInputs.map(input => new InputField({ ...input }));
     this.children.authButton = new Button({
       text: "Авторизоваться",
       type: "submit",
@@ -27,6 +29,8 @@ export class AuthPage extends Block {
   onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
+    AuthController.signin(data)
+
     console.log(data);
   }
 

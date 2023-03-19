@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE, INPUT_NAME } from "../../utils/const";
-import { validateInput } from "../../utils/validateInput";
+import { ERROR_MESSAGE, INPUT_NAME } from "../../helpers/const";
+import { validateInput } from "../../helpers/validateInput";
 
 export const registerInputs = [
   {

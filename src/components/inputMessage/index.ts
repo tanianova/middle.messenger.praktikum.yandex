@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./ui.hbs";
 import { InputMessageProps } from "./types";
-import { validateInput } from "../../utils/validateInput";
+import { validateInput } from "../../helpers/validateInput";
 
 export class InputMessage extends Block {
   constructor(props: InputMessageProps) {

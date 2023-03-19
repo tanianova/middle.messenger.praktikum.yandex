@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./ui.hbs";
 import { Button } from "../button";
 import { InputAvatar } from "../inputAvatar";
-import { getFormData } from "../../utils/getFormData";
+import { getFormData } from "../../helpers/getFormData";
 import { PopupEditAvatarProps } from "./types";
 import { ButtonClose } from "../buttonClose";
 

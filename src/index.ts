@@ -4,10 +4,11 @@ import { Error404Page } from "./pages/404";
 import { Error500Page } from "./pages/500";
 import { RegisterPage } from "./pages/Register";
 import { ChatPage } from "./pages/Chat";
-import { ProfilePage } from "./pages/Profile";
 import { ProfileEditInfoPage } from "./pages/ProfileEditInfo";
 import { ProfileEditPasswordPage } from "./pages/ProfileEditPassword";
 import Router from "./utils/Router";
+import AuthController from "./controllers/AuthController";
+import { ProfilePage } from "./pages/Profile";
 
 export enum Routes {
   Auth = "/",
@@ -41,10 +42,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    // await AuthController.fetchUser();
-
+    await AuthController.getUser();
     Router.start();
-
     if (!isProtectedRoute) {
       Router.go(Routes.Profile);
     }
