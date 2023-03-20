@@ -7,8 +7,9 @@ import { InputField } from "../../components/inputField";
 import { getFormData } from "../../helpers/getFormData";
 import { LinkToChat } from "../../components/linkToChat";
 import { Routes } from "../../index";
+import { withStore } from "../../hocs/withStore";
 
-export class ProfileEditPasswordPage extends Block {
+export class ProfileEditPasswordPageBase extends Block {
   init() {
     this.children.linkToChat = new LinkToChat({
       to: Routes.Chat,
@@ -35,3 +36,7 @@ export class ProfileEditPasswordPage extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export const ProfileEditPasswordPage = withStore((state) => {
+  return state.user || {};
+})(ProfileEditPasswordPageBase);

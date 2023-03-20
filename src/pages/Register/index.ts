@@ -4,13 +4,16 @@ import { registerInputs } from "./const";
 import { Button } from "../../components/button";
 import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
-import { getFormData } from "../../helpers/getFormData";
+import { formIsValid, getFormData } from "../../helpers/getFormData";
 import { Routes } from "../../index";
 import AuthController from "../../controllers/AuthController";
 
 export class RegisterPage extends Block {
   init() {
-    this.children.registerInputs = registerInputs.map(input => new InputField({ ...input }));
+    this.children.registerInputs = registerInputs.map(input => new InputField({
+      ...input,
+      required: true,
+    }));
     this.children.button = new Button({
       text: "Зарегистрироваться",
       type: "submit",
@@ -25,11 +28,13 @@ export class RegisterPage extends Block {
     });
   }
 
-  onSubmit(e: Event) {
+  async onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
-    AuthController.signup(data);
-    console.log(data);
+    const isValid = formIsValid(this.getContent());
+    if (isValid) {
+      await AuthController.signup(data);
+    }
   }
 
   render() {

@@ -3,11 +3,10 @@ import template from "./ui.hbs";
 import { Button } from "../../components/button";
 import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
-import { getFormData } from "../../helpers/getFormData";
+import { formIsValid, getFormData } from "../../helpers/getFormData";
 import { authInputs } from "./const";
 import { Routes } from "../../index";
 import AuthController from "../../controllers/AuthController";
-
 
 export class AuthPage extends Block {
   init() {
@@ -26,12 +25,13 @@ export class AuthPage extends Block {
     });
   }
 
-  onSubmit(e: Event) {
+  async onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
-    AuthController.signin(data)
-
-    console.log(data);
+    const isValid = formIsValid(this.getContent());
+    if (isValid) {
+      await AuthController.signin(data);
+    }
   }
 
   render() {

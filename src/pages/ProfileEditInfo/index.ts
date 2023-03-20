@@ -7,14 +7,19 @@ import { InputField } from "../../components/inputField";
 import { getFormData } from "../../helpers/getFormData";
 import { LinkToChat } from "../../components/linkToChat";
 import { Routes } from "../../index";
+import { withStore } from "../../hocs/withStore";
 
-export class ProfileEditInfoPage extends Block {
+export class ProfileEditInfoPageBase extends Block {
   init() {
     this.children.linkToChat = new LinkToChat({
       to: Routes.Chat,
     });
     this.children.avatar = new Avatar({ class: "avatar-edit" });
-    this.children.editInfoInputs = editInfoInputs.map(input => new InputField({ ...input }));
+    this.children.editInfoInputs = editInfoInputs.map(input => new InputField({
+      ...input,
+      value: this.props[input.name],
+      required: true,
+    }));
     this.children.button = new Button({
       text: "Сохранить",
       type: "submit",
@@ -35,3 +40,7 @@ export class ProfileEditInfoPage extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export const ProfileEditInfoPage = withStore((state) => {
+  return state.user || {};
+})(ProfileEditInfoPageBase);

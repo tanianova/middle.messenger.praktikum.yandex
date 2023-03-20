@@ -17,7 +17,11 @@ class ProfilePageBase extends Block {
       to: Routes.Chat,
     });
     this.children.avatar = new Avatar({});
-    this.children.profileInputs = profileInputs.map(input => new InputField({ ...input }));
+    this.children.profileInputs = profileInputs.map(input => new InputField({
+      ...input,
+      value: this.props[input.name],
+      readonly: true,
+    }));
     this.children.editInfoLink = new Link({
       text: "Изменить данные",
       to: Routes.EditInfo,
@@ -30,7 +34,7 @@ class ProfilePageBase extends Block {
     });
     this.children.exitLink = new Button({
       text: "Выйти",
-      type:'submit',
+      type: "submit",
       class: "profile__link link-danger",
       events: {
         click: () => {
@@ -41,7 +45,10 @@ class ProfilePageBase extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, {
+      ...this.props,
+      title: this.props.first_name || this.props.login,
+    });
   }
 }
 

@@ -1,4 +1,4 @@
-import { AuthAPI } from "../api/AuthAPI";
+import API, { AuthAPI } from "../api/AuthAPI";
 import { SigninData, SignupData } from "../api/types";
 import store from "../utils/Store";
 import router from "../utils/Router";
@@ -8,8 +8,7 @@ class AuthController {
   private api: AuthAPI;
 
   constructor() {
-    this.api = new AuthAPI();
-
+    this.api = API;
   }
 
   async signup(data: SignupData) {
@@ -42,8 +41,8 @@ class AuthController {
     }
   }
 
-  getUser() {
-    const user = this.api.read();
+  async getUser() {
+    const user = await this.api.read();
     store.set("user", user);
   }
 }
