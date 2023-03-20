@@ -4,6 +4,7 @@ import { EventBus } from "./EventBus";
 
 export interface State {
   user?: User;
+  userList?: User[];
 }
 
 export enum StoreEvent {

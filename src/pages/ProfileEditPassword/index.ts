@@ -4,10 +4,11 @@ import { Avatar } from "../../components/avatar";
 import { Button } from "../../components/button";
 import { editPasswordInputs } from "./const";
 import { InputField } from "../../components/inputField";
-import { getFormData } from "../../helpers/getFormData";
+import { formIsValid, getFormData } from "../../helpers/getFormData";
 import { LinkToChat } from "../../components/linkToChat";
 import { Routes } from "../../index";
 import { withStore } from "../../hocs/withStore";
+import UserController from "../../controllers/UserController";
 
 export class ProfileEditPasswordPageBase extends Block {
   init() {
@@ -26,10 +27,14 @@ export class ProfileEditPasswordPageBase extends Block {
     });
   }
 
-  onSubmit(e: Event) {
+  async onSubmit(e: Event) {
     e.preventDefault();
-    const data = getFormData(this.getContent());
-    console.log(data);
+    const data = getFormData(this.getContent()
+      ?.querySelector(".profile__form"));
+    const isValid = formIsValid(this.getContent());
+    if (isValid) {
+      await UserController.updatePassword(data);
+    }
   }
 
   render() {

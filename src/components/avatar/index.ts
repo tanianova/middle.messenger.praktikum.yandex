@@ -3,23 +3,23 @@ import template from "./ui.hbs";
 import { AvatarProps } from "./types";
 import { PopupEditAvatar } from "../popupEditAvatar";
 import { AvatarButton } from "../avatarButton";
+import { withStore } from "../../hocs/withStore";
 
-export class Avatar extends Block {
+export class AvatarBase extends Block {
   constructor(props: AvatarProps) {
     super(props);
   }
 
   init() {
-    this.children.popup = new PopupEditAvatar({events: {
-        click: () => {
-          (this.children.popup as PopupEditAvatar).hide();
-        },
-      }});
+    this.children.popup = new PopupEditAvatar({});
     this.children.avatarButton = new AvatarButton({
       class: this.props.class,
-      events: { click: () => {
-        (this.children.popup as PopupEditAvatar).show();
-        } },
+      avatar: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
+      events: {
+        click: () => {
+          (this.children.popup as PopupEditAvatar).show();
+        },
+      },
     });
   }
 
@@ -27,3 +27,7 @@ export class Avatar extends Block {
     return this.compile(template, this.props);
   }
 }
+
+export const Avatar = withStore((state) => {
+  return state.user || {};
+})(AvatarBase);

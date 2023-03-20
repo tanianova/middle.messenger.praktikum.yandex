@@ -5,9 +5,19 @@
   height: 130px;
   cursor: pointer;
   margin-bottom: 20px;
+  border-radius: 50%;
 
   &:hover &__overlay {
     opacity: 1;
+  }
+
+  &__img {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    overflow: hidden;
+    object-fit: cover;
   }
 
   &__overlay {
@@ -22,7 +32,7 @@
     color: $white;
     transition: opacity 0.2s linear 0s;
     text-align: center;
-    border-radius: 50%;
+    border-radius: inherit;
     inset: 0;
     padding: 12px;
   }

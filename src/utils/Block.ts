@@ -115,14 +115,15 @@ class Block<P extends Record<string, any> = any> {
       });
   }
 
-  private _componentDidUpdate() {
-    if (this.componentDidUpdate()) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
+    if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus()
         .emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate() {
+  // @ts-ignore
+  protected componentDidUpdate(oldProps: P, newProps: P) {
     return true;
   }
 

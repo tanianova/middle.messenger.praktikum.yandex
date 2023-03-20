@@ -2,14 +2,15 @@ import Block from "../../utils/Block";
 import template from "./ui.hbs";
 import { Button } from "../button";
 import { InputAvatar } from "../inputAvatar";
-import { getFormData } from "../../helpers/getFormData";
 import { PopupEditAvatarProps } from "./types";
 import { ButtonClose } from "../buttonClose";
+import UserController from "../../controllers/UserController";
 
 export class PopupEditAvatar extends Block {
   constructor(props: PopupEditAvatarProps) {
     super(props);
   }
+
   init() {
     this.children.button = new Button({
       text: "Поменять",
@@ -21,14 +22,19 @@ export class PopupEditAvatar extends Block {
     });
     this.children.inputAvatar = new InputAvatar();
     this.children.closeButton = new ButtonClose({
-      events: this.props.events
+      events: {
+        click: () => this.hide(),
+      },
     });
   }
 
-  onSubmit(e: Event) {
+  async onSubmit(e: Event) {
     e.preventDefault();
-    const data = getFormData(this.getContent());
-    console.log(data);
+    const form = new FormData(document.querySelector(".avatar__form") as HTMLFormElement);
+    if (form.get("avatar")) {
+      await UserController.updateAvatar(form);
+      this.hide();
+    }
   }
 
   render() {
