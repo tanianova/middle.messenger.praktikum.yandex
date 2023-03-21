@@ -1,19 +1,9 @@
 <section class="chat">
   {{{sidebar}}}
   <div class="chat-content">
-    {{{popoverEditUser}}}
-    <div class="chat-content__header">
-      <div class="chat-content__header-info">
-        <div class="chat-content__header-avatar small-avatar">
-        </div>
-        <h5 class="chat-content__header-name">Вадим</h5>
-      </div>
-      <button class="button chat-content__header-button">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </button>
-    </div>
+    {{#if selectedChat}}
+      {{{chatHeader}}}
+    {{/if}}
     <div class="chat-content__main">
       <p class="chat-content__main-date">19 june</p>
       {{#each chatMessageList}}

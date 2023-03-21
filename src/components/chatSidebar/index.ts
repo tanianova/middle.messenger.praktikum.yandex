@@ -10,6 +10,7 @@ import { SearchInput } from "../searchInput";
 import { ChatItem } from "../chatItem";
 import ChatsController from "../../controllers/ChatsController";
 import { ChatSidebarProps } from "./types";
+import router from "../../utils/Router";
 
 export class ChatSidebarBase extends Block<ChatSidebarProps> {
   init() {
@@ -28,16 +29,18 @@ export class ChatSidebarBase extends Block<ChatSidebarProps> {
       to: Routes.Profile,
     });
     this.children.searchInput = new SearchInput();
-    this.children.chatList =  this.createChats(this.props);
+    this.children.chatList = this.createChats(this.props);
   }
 
   createChats(props: ChatSidebarProps) {
-    return (props.chatList ||[]).map(data => {
+    return (props.chatList || []).map(data => {
       return new ChatItem({
         data,
+        selectedChatId: props.selectedChatId,
         events: {
           click: () => {
             ChatsController.selectChat(data.id);
+            router.go(Routes.Chat);
           },
         },
       });
