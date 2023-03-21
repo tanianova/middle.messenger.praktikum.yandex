@@ -40,10 +40,10 @@ class UserController {
   }
 
   async searchUser(login: string) {
-    store.set("userList", undefined);
+    store.set("userSearchResultList", undefined);
     try {
-      const userList = await this.api.searchUser({ login });
-      store.set("userList", userList);
+      const userSearchResultList = await this.api.searchUser({ login });
+      store.set("userSearchResultList", userSearchResultList);
     } catch (e) {
       console.error(e.message);
     }

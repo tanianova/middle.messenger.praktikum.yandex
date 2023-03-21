@@ -1,10 +1,13 @@
-import { User } from "../api/types";
+import { ChatInfo, User } from "../api/types";
 import { set } from "../helpers/set";
 import { EventBus } from "./EventBus";
 
 export interface State {
   user?: User;
-  userList?: User[];
+  userSearchResultList?: User[];
+  chatList?: ChatInfo[];
+  selectedChatUserList?: User[];
+  selectedChatId?: number;
 }
 
 export enum StoreEvent {
