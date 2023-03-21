@@ -12,9 +12,13 @@ export class AvatarBase extends Block {
 
   init() {
     this.children.popup = new PopupEditAvatar({});
-    this.children.avatarButton = new AvatarButton({
-      class: this.props.class,
-      avatar: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
+    this.children.avatarButton = this.createAvatarButton(this.props);
+  }
+
+  createAvatarButton(props: AvatarProps) {
+    return new AvatarButton({
+      class: props.class,
+      avatar: `https://ya-praktikum.tech/api/v2/resources${props.avatar}`,
       events: {
         click: () => {
           (this.children.popup as PopupEditAvatar).show();
@@ -23,11 +27,16 @@ export class AvatarBase extends Block {
     });
   }
 
+  componentDidUpdate(_oldProps: AvatarProps, newProps: AvatarProps): boolean {
+    this.children.avatarButton = this.createAvatarButton(newProps);
+    return true;
+  }
+
   render() {
     return this.compile(template, this.props);
   }
 }
 
 export const Avatar = withStore((state) => {
-  return state.user || {};
+  return { ...state.user };
 })(AvatarBase);
