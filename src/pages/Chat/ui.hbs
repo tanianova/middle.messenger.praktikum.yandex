@@ -1,16 +1,5 @@
 <section class="chat">
-  <div class="chat-sidebar">
-    <div class="chat-link__container">
-      {{{createChatButton}}}
-      {{{profileLink}}}
-    </div>
-    {{{searchInput}}}
-    <div class="chat-list">
-      {{#each chatList}}
-        {{{this}}}
-      {{/each}}
-    </div>
-  </div>
+  {{{sidebar}}}
   <div class="chat-content">
     {{{popoverEditUser}}}
     <div class="chat-content__header">
@@ -41,5 +30,4 @@
       </form>
     </div>
   </div>
-{{{popupCreateChat}}}
 </section>
