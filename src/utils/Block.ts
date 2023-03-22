@@ -245,6 +245,14 @@ class Block<P extends Record<string, any> = any> {
   hide() {
     this.getContent()!.style.display = "none";
   }
+
+  toggle() {
+    if (this.getContent()!.style.display === "block") {
+      this.getContent()!.style.display = "none";
+    } else {
+      this.getContent()!.style.display = "block";
+    }
+  }
 }
 
 export default Block;

@@ -1,7 +1,8 @@
 import Block from "../../utils/Block";
 import template from "./ui.hbs";
 import { ChatHeaderProps } from "./types";
-import { PopoverEditUser } from "../popoverEditUser";
+import { PopoverEditChat } from "../popoverEditChat";
+import { ButtonEditChat } from "../buttonEditChat";
 
 export class ChatHeader extends Block<ChatHeaderProps> {
   constructor(props: ChatHeaderProps) {
@@ -9,7 +10,14 @@ export class ChatHeader extends Block<ChatHeaderProps> {
   }
 
   init() {
-    this.children.popoverEditUser = new PopoverEditUser();
+    this.children.popoverEditChat = new PopoverEditChat({});
+    this.children.buttonEditChat = new ButtonEditChat({
+      events: {
+        click: () => {
+          (this.children.popoverEditChat as PopoverEditChat).toggle()
+        },
+      },
+    });
   }
 
   render() {
