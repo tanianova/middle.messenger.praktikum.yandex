@@ -11,6 +11,7 @@ import { ChatItem } from "../chatItem";
 import ChatsController from "../../controllers/ChatsController";
 import { ChatSidebarProps } from "./types";
 import router from "../../utils/Router";
+import store from "../../utils/Store";
 
 export class ChatSidebarBase extends Block<ChatSidebarProps> {
   init() {
@@ -41,6 +42,7 @@ export class ChatSidebarBase extends Block<ChatSidebarProps> {
           click: () => {
             ChatsController.selectChat(data.id);
             router.go(Routes.Chat);
+            store.set("userSearchResultList", undefined);
           },
         },
       });

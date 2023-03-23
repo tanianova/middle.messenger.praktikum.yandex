@@ -10,19 +10,13 @@ import { withStore } from "../../hocs/withStore";
 import { ChatUserItem } from "../chatUserItem";
 import { User } from "../../api/types";
 import chatsController from "../../controllers/ChatsController";
-// import store, { StoreEvent } from "../../utils/Store";
 
 export class PopupAddUserToChatBase extends Block<PopupAddUserToChatProps> {
   constructor(props: PopupAddUserToChatProps) {
     super(props);
-    // store.on(StoreEvent.Updated, () => {
-    //   const userList = store.getState().userSearchResultList;
-    //   this.setProps({
-    //     ...this.props,
-    //     userSearchResultList: userList,
-    //   });
-    //   console.log(this.props);
-    // });
+    if (props.userSearchResultList?.length) {
+      this.show();
+    }
   }
 
   init() {
