@@ -39,7 +39,7 @@ export class ChatPageBase extends Block {
     return new ChatHeader(props);
   }
 
-  protected componentDidUpdate(_oldProps: ChatHeaderProps, newProps: ChatHeaderProps): boolean {
+  componentDidUpdate(_oldProps: ChatHeaderProps, newProps: ChatHeaderProps): boolean {
     this.children.chatHeader = this.createChatHeader(newProps);
     return true;
   }

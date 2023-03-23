@@ -3,6 +3,8 @@ import template from "./ui.hbs";
 import { ChatHeaderProps } from "./types";
 import { PopoverEditChat } from "../popoverEditChat";
 import { ButtonEditChat } from "../buttonEditChat";
+import { PopupAddUserToChat } from "../popupAddUserToChat";
+import { PopupChatUserList } from "../popupChatUserList";
 
 export class ChatHeader extends Block<ChatHeaderProps> {
   constructor(props: ChatHeaderProps) {
@@ -10,11 +12,22 @@ export class ChatHeader extends Block<ChatHeaderProps> {
   }
 
   init() {
-    this.children.popoverEditChat = new PopoverEditChat({});
+    this.children.popupAddUserToChat = new PopupAddUserToChat({});
+    this.children.popupChatUserList = new PopupChatUserList({});
+    this.children.popoverEditChat = new PopoverEditChat({
+      showPopupAddUserToChat: () => {
+        (this.children.popupAddUserToChat as Block).show();
+        (this.children.popoverEditChat as Block).hide();
+      },
+      showPopupChatUserList:() => {
+        (this.children.popupChatUserList as Block).show();
+        (this.children.popoverEditChat as Block).hide();
+      },
+    });
     this.children.buttonEditChat = new ButtonEditChat({
       events: {
         click: () => {
-          (this.children.popoverEditChat as PopoverEditChat).toggle()
+          (this.children.popoverEditChat as Block).show();
         },
       },
     });
