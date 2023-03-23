@@ -54,6 +54,7 @@ export const ChatPage = withStore((state) => {
     chatList: state.chatList,
     selectedChatId: state.selectedChatId,
     selectedChatUserList: state.selectedChatUserList,
+    searchList: state.userSearchResultList,
     selectedChat: state.selectedChatId &&
       state.chatList?.find((chat) => chat.id === state.selectedChatId),
   };

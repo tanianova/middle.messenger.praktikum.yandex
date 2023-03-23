@@ -6,10 +6,23 @@ import { ButtonClose } from "../buttonClose";
 import { InputField } from "../inputField";
 import { formIsValid, getFormData } from "../../helpers/getFormData";
 import UserController from "../../controllers/UserController";
+import { withStore } from "../../hocs/withStore";
+import { ChatUserItem } from "../chatUserItem";
+import { User } from "../../api/types";
+import chatsController from "../../controllers/ChatsController";
+// import store, { StoreEvent } from "../../utils/Store";
 
-export class PopupAddUserToChat extends Block {
+export class PopupAddUserToChatBase extends Block<PopupAddUserToChatProps> {
   constructor(props: PopupAddUserToChatProps) {
     super(props);
+    // store.on(StoreEvent.Updated, () => {
+    //   const userList = store.getState().userSearchResultList;
+    //   this.setProps({
+    //     ...this.props,
+    //     userSearchResultList: userList,
+    //   });
+    //   console.log(this.props);
+    // });
   }
 
   init() {
@@ -33,6 +46,7 @@ export class PopupAddUserToChat extends Block {
         click: () => this.hide(),
       },
     });
+    this.children.userList = this.createUserList(this.props);
   }
 
   async onSubmit(e: Event) {
@@ -46,7 +60,33 @@ export class PopupAddUserToChat extends Block {
     }
   }
 
+  createUserList(props: PopupAddUserToChatProps) {
+    return (props.userSearchResultList || []).map((user => {
+      return new ChatUserItem({
+        name: `${user.login} (${user.first_name} ${user.second_name})`,
+        buttonName: "добавить",
+        onClick: () => this.addUserToChat(user),
+      });
+    }));
+  }
+
+  addUserToChat(user: User) {
+    chatsController.addUserToChat(this.props.selectedChatId, user.id);
+  }
+
+  componentDidUpdate(_oldProps: PopupAddUserToChatProps, newProps: PopupAddUserToChatProps): boolean {
+    this.children.userList = this.createUserList(newProps);
+    return true;
+  }
+
   render() {
-    return this.compile(template, {});
+    return this.compile(template, { ...this.props });
   }
 }
+
+export const PopupAddUserToChat = withStore((state) => {
+  return {
+    userSearchResultList: state.userSearchResultList,
+    selectedChatId: state.selectedChatId,
+  };
+})(PopupAddUserToChatBase);

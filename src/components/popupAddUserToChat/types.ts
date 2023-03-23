@@ -1,3 +1,6 @@
-export interface PopupAddUserToChatProps{
-  events?: Record<string, EventListenerOrEventListenerObject>;
+import { User } from "../../api/types";
+
+export interface PopupAddUserToChatProps {
+  userSearchResultList?: User[];
+  selectedChatId: number;
 }
