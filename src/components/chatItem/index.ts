@@ -9,7 +9,7 @@ export class ChatItem extends Block<ChatItemProps> {
   }
 
   render() {
-    const time = this.props.data.last_message?.time && new Date(this.props.data.last_message?.time).toLocaleTimeString()  ;
+    const time = this.props.data.last_message?.time && new Date(this.props.data.last_message?.time).toLocaleTimeString();
     return this.compile(template, {
       ...this.props.data,
       last_message: this.props.data.last_message?.content,

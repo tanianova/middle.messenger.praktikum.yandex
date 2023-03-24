@@ -9,7 +9,7 @@ export class ChatMessageBase extends Block<ChatMessageProps> {
   }
 
   render() {
-    const time = this.props.data.time && new Date(this.props.data.time).toLocaleTimeString()
+    const time = this.props.data.time && new Date(this.props.data.time).toLocaleTimeString();
     return this.compile(template, {
       ...this.props.data,
       isMine: this.props.data.user_id = this.props.user.id,
