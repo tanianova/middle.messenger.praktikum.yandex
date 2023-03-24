@@ -33,6 +33,7 @@ export class ChatPageBase extends Block<ChatPageProps> {
     e.preventDefault();
     const data = getFormData(this.getContent());
     MessagesController.sendMessage(this.props.selectedChatId, data["message"]);
+    (this.children.inputMessage as InputMessage).setValue("");
   }
 
   createChatHeader(props: ChatPageProps) {

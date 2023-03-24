@@ -13,6 +13,10 @@ export class InputMessage extends Block {
     });
   }
 
+  setValue(value: string) {
+    return (this.element as HTMLInputElement).value = value;
+  }
+
   render() {
     return this.compile(template, this.props);
   }
