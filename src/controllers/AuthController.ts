@@ -3,6 +3,7 @@ import { SigninData, SignupData } from "../api/types";
 import store from "../utils/Store";
 import router from "../utils/Router";
 import { Routes } from "../index";
+import MessagesController from "./MessagesController";
 
 class AuthController {
   private api: AuthAPI;
@@ -33,6 +34,7 @@ class AuthController {
 
   async logout() {
     try {
+      MessagesController.closeAll();
       await this.api.logout();
       store.set("user", undefined);
       router.go(Routes.Auth);

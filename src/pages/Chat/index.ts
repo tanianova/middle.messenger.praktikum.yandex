@@ -1,6 +1,5 @@
 import Block from "../../utils/Block";
 import template from "./ui.hbs";
-import { chatMessageList } from "./const";
 import { ChatMessage } from "../../components/chatMessage";
 import { ButtonArrow } from "../../components/buttonArrow";
 
@@ -9,15 +8,16 @@ import { getFormData } from "../../helpers/getFormData";
 
 import ChatsController from "../../controllers/ChatsController";
 import { ChatHeader } from "../../components/chatHeader";
-import { ChatHeaderProps } from "../../components/chatHeader/types";
 import { withStore } from "../../hocs/withStore";
 import { ChatSidebar } from "../../components/chatSidebar";
+import MessagesController from "../../controllers/MessagesController";
+import { ChatPageProps } from "./types";
 
-export class ChatPageBase extends Block {
+export class ChatPageBase extends Block<ChatPageProps> {
   init() {
     this.children.sidebar = new ChatSidebar({});
     this.children.chatHeader = this.createChatHeader(this.props);
-    this.children.chatMessageList = chatMessageList.map(message => new ChatMessage({ ...message }));
+    this.children.chatMessageList = this.createChatMessageList(this.props);
     this.children.buttonArrow = new ButtonArrow({
       type: "submit",
       class: "arrow-reverse",
@@ -32,20 +32,37 @@ export class ChatPageBase extends Block {
   onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
-    console.log(data);
+    MessagesController.sendMessage(this.props.selectedChatId, data["message"]);
   }
 
-  createChatHeader(props: ChatHeaderProps) {
+  createChatHeader(props: ChatPageProps) {
     return new ChatHeader(props);
   }
 
-  componentDidUpdate(_oldProps: ChatHeaderProps, newProps: ChatHeaderProps): boolean {
+  createChatMessageList(props: ChatPageProps) {
+    return (props.messages || []).map(data => {
+      return new ChatMessage({ data });
+    });
+  }
+
+  messageDate(): string {
+    const lastMessage = (this.props.selectedChat || {}).last_message;
+    return lastMessage
+      ? new Date(lastMessage.time).toLocaleDateString("ru-Ru")
+      : "Выберите Чат";
+  }
+
+  componentDidUpdate(_oldProps: ChatPageProps, newProps: ChatPageProps): boolean {
     this.children.chatHeader = this.createChatHeader(newProps);
+    this.children.chatMessageList = this.createChatMessageList(newProps);
     return true;
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, {
+      ...this.props,
+      messageDate: this.messageDate(),
+    });
   }
 }
 
@@ -57,5 +74,6 @@ export const ChatPage = withStore((state) => {
     searchList: state.userSearchResultList,
     selectedChat: state.selectedChatId &&
       state.chatList?.find((chat) => chat.id === state.selectedChatId),
+    messages: state.selectedChatId && (state.messages || {})[state.selectedChatId] || [],
   };
 })(ChatPageBase);

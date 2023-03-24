@@ -9,11 +9,13 @@ export class ChatItem extends Block<ChatItemProps> {
   }
 
   render() {
+    const time = this.props.data.last_message?.time && new Date(this.props.data.last_message?.time).toLocaleTimeString()  ;
     return this.compile(template, {
       ...this.props.data,
-      time: this.props.data.last_message?.time,
-      lastMessageMine: this.props.data.last_message?.user?.id === store.getState().user?.id,
-      selected: this.props.data.id === this.props.selectedChatId
+      last_message: this.props.data.last_message?.content,
+      time,
+      lastMessageMine: this.props.data.last_message?.user?.email === store.getState().user?.email,
+      selected: this.props.data.id === this.props.selectedChatId,
     });
   }
 }

@@ -1,5 +1,6 @@
+import { Message, User } from "../../api/types";
+
 export interface ChatMessageProps {
-  isMine?: boolean;
-  text: string;
-  time: string;
+  data: Message;
+  user: User;
 }

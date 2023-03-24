@@ -2,6 +2,7 @@ import API, { ChatsAPI } from "../api/ChatsAPI";
 import store from "../utils/Store";
 import router from "../utils/Router";
 import { Routes } from "../index";
+import MessagesController from "./MessagesController";
 
 class ChatsController {
   private readonly api: ChatsAPI;
@@ -25,7 +26,7 @@ class ChatsController {
       chatList.map(async (chat) => {
         const token = await this.getToken(chat.id);
         if (token) {
-          // await MessagesController.connect(chat.id, token);
+          await MessagesController.connect(chat.id, token);
         }
       });
       store.set("chatList", chatList);
