@@ -1,3 +1,5 @@
+import { BASE_URL } from "../helpers/const";
+
 enum Methods {
   Get = "Get",
   Post = "Post",
@@ -13,12 +15,11 @@ interface Options {
   headers?: Record<string, string>;
 }
 
-export default class HTTPTransport {
-  static API_URL = "https://ya-praktikum.tech/api/v2";
+export class HTTPTransport {
   protected endpoint: string;
 
   constructor(endpoint: string) {
-    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+    this.endpoint = `${BASE_URL}${endpoint}`;
   }
 
   public get<Response>(path = "/"): Promise<Response> {

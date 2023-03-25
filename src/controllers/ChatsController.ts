@@ -1,10 +1,10 @@
-import API, { ChatsAPI } from "../api/ChatsAPI";
-import store from "../utils/Store";
-import router from "../utils/Router";
+import { ChatsAPI, API } from "../api/ChatsAPI";
+import { store } from "../utils/Store";
+import { router } from "../utils/Router";
 import { Routes } from "../index";
-import MessagesController from "./MessagesController";
+import { MessagesController } from "./MessagesController";
 
-class ChatsController {
+class ChatsControllerBase {
   private readonly api: ChatsAPI;
 
   constructor() {
@@ -65,6 +65,7 @@ class ChatsController {
       console.error(e.message);
     }
   }
+
   async selectChat(id: number) {
     try {
       const userList = await this.api.getUsers(id);
@@ -84,4 +85,4 @@ class ChatsController {
   }
 }
 
-export default new ChatsController();
+export const ChatsController = new ChatsControllerBase();

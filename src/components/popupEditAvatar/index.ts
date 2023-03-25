@@ -1,10 +1,10 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { Button } from "../button";
 import { InputAvatar } from "../inputAvatar";
 import { PopupEditAvatarProps } from "./types";
 import { ButtonClose } from "../buttonClose";
-import UserController from "../../controllers/UserController";
+import { UserController } from "../../controllers/UserController";
 
 export class PopupEditAvatar extends Block {
   constructor(props: PopupEditAvatarProps) {

@@ -1,16 +1,16 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { ChatMessage } from "../../components/chatMessage";
 import { ButtonArrow } from "../../components/buttonArrow";
 
 import { InputMessage } from "../../components/inputMessage";
 import { getFormData } from "../../helpers/getFormData";
 
-import ChatsController from "../../controllers/ChatsController";
+import { ChatsController } from "../../controllers/ChatsController";
 import { ChatHeader } from "../../components/chatHeader";
 import { withStore } from "../../hocs/withStore";
 import { ChatSidebar } from "../../components/chatSidebar";
-import MessagesController from "../../controllers/MessagesController";
+import { MessagesController } from "../../controllers/MessagesController";
 import { ChatPageProps } from "./types";
 
 export class ChatPageBase extends Block<ChatPageProps> {

@@ -1,10 +1,10 @@
-import API, { UserAPI } from "../api/UserAPI";
+import { UserAPI, API } from "../api/UserAPI";
 import { UpdatePasswordData, UpdateUserData } from "../api/types";
-import store from "../utils/Store";
-import router from "../utils/Router";
+import { store } from "../utils/Store";
+import { router } from "../utils/Router";
 import { Routes } from "../index";
 
-class UserController {
+class UserControllerBase {
   private readonly api: UserAPI;
 
   constructor() {
@@ -50,4 +50,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export const UserController = new UserControllerBase();

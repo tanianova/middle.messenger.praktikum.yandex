@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { ButtonDeleteChatProps } from "./types";
 
 export class ButtonDeleteChat extends Block {

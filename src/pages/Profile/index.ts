@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { profileInputs } from "./const";
 
 import { Avatar } from "../../components/avatar";
@@ -7,7 +7,7 @@ import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
 import { Routes } from "../../index";
 import { LinkToChat } from "../../components/linkToChat";
-import AuthController from "../../controllers/AuthController";
+import { AuthController } from "../../controllers/AuthController";
 import { withStore } from "../../hocs/withStore";
 import { Button } from "../../components/button";
 

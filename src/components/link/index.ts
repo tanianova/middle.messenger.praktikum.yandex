@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import { LinkProps } from "./types";
-import template from "./ui.hbs";
+import  template  from "./ui.hbs";
 import { withRouter } from "../../hocs/withRouter";
 
 class BaseLink extends Block<LinkProps> {

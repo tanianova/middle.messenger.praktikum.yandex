@@ -1,12 +1,12 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { Button } from "../../components/button";
 import { Link } from "../../components/link";
 import { InputField } from "../../components/inputField";
 import { formIsValid, getFormData } from "../../helpers/getFormData";
 import { authInputs } from "./const";
 import { Routes } from "../../index";
-import AuthController from "../../controllers/AuthController";
+import { AuthController } from "../../controllers/AuthController";
 
 export class AuthPage extends Block {
   init() {

@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { Avatar } from "../../components/avatar";
 import { editInfoInputs } from "./const";
 import { Button } from "../../components/button";
@@ -8,7 +8,7 @@ import { formIsValid, getFormData } from "../../helpers/getFormData";
 import { LinkToChat } from "../../components/linkToChat";
 import { Routes } from "../../index";
 import { withStore } from "../../hocs/withStore";
-import UserController from "../../controllers/UserController";
+import { UserController } from "../../controllers/UserController";
 
 export class ProfileEditInfoPageBase extends Block {
   init() {

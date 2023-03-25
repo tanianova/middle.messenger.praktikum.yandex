@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import { BaseAPI } from "./BaseAPI";
 import { SigninData, SignupData, User } from "./types";
 
 export class AuthAPI extends BaseAPI {
@@ -27,4 +27,4 @@ export class AuthAPI extends BaseAPI {
   delete = undefined;
 }
 
-export default new AuthAPI();
+export const API = new AuthAPI();

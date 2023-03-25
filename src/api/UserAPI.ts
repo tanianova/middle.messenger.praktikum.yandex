@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import { BaseAPI } from "./BaseAPI";
 import { SearchUserData, UpdatePasswordData, UpdateUserData, User } from "./types";
 
 export class UserAPI extends BaseAPI {
@@ -27,4 +27,4 @@ export class UserAPI extends BaseAPI {
   delete = undefined;
 }
 
-export default new UserAPI();
+export const API = new UserAPI();

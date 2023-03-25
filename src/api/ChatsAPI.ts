@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import { BaseAPI } from "./BaseAPI";
 import { ChatInfo, User } from "./types";
 
 export class ChatsAPI extends BaseAPI {
@@ -45,4 +45,4 @@ export class ChatsAPI extends BaseAPI {
   update = undefined;
 }
 
-export default new ChatsAPI();
+export const API = new ChatsAPI();

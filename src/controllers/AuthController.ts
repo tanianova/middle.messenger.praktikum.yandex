@@ -1,11 +1,11 @@
-import API, { AuthAPI } from "../api/AuthAPI";
+import { AuthAPI, API } from "../api/AuthAPI";
 import { SigninData, SignupData } from "../api/types";
-import store from "../utils/Store";
-import router from "../utils/Router";
+import { store } from "../utils/Store";
+import { router } from "../utils/Router";
 import { Routes } from "../index";
-import MessagesController from "./MessagesController";
+import { MessagesController } from "./MessagesController";
 
-class AuthController {
+class AuthControllerBase {
   private api: AuthAPI;
 
   constructor() {
@@ -49,4 +49,4 @@ class AuthController {
   }
 }
 
-export default new AuthController();
+export const AuthController = new AuthControllerBase();

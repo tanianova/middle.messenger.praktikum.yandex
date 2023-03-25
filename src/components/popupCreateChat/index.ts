@@ -1,11 +1,11 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { PopupCreateChatProps } from "./types";
 import { Button } from "../button";
 import { ButtonClose } from "../buttonClose";
 import { InputField } from "../inputField";
 import { formIsValid, getFormData } from "../../helpers/getFormData";
-import ChatsController from "../../controllers/ChatsController";
+import { ChatsController } from "../../controllers/ChatsController";
 
 export class PopupCreateChat extends Block {
   constructor(props: PopupCreateChatProps) {

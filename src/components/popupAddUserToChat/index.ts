@@ -1,15 +1,15 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { PopupAddUserToChatProps } from "./types";
 import { Button } from "../button";
 import { ButtonClose } from "../buttonClose";
 import { InputField } from "../inputField";
 import { formIsValid, getFormData } from "../../helpers/getFormData";
-import UserController from "../../controllers/UserController";
+import { UserController } from "../../controllers/UserController";
 import { withStore } from "../../hocs/withStore";
 import { ChatUserItem } from "../chatUserItem";
 import { User } from "../../api/types";
-import chatsController from "../../controllers/ChatsController";
+import { ChatsController } from "../../controllers/ChatsController";
 
 export class PopupAddUserToChatBase extends Block<PopupAddUserToChatProps> {
   constructor(props: PopupAddUserToChatProps) {
@@ -65,7 +65,7 @@ export class PopupAddUserToChatBase extends Block<PopupAddUserToChatProps> {
   }
 
   addUserToChat(user: User) {
-    chatsController.addUserToChat(this.props.selectedChatId, user.id);
+    ChatsController.addUserToChat(this.props.selectedChatId, user.id);
   }
 
   componentDidUpdate(_oldProps: PopupAddUserToChatProps, newProps: PopupAddUserToChatProps): boolean {

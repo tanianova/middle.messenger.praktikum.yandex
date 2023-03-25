@@ -1,10 +1,10 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import template from "./ui.hbs";
 import { PopupChatUserListProps } from "./types";
 import { ButtonClose } from "../buttonClose";
 import { withStore } from "../../hocs/withStore";
 import { ChatUserItem } from "../chatUserItem";
-import chatsController from "../../controllers/ChatsController";
+import { ChatsController } from "../../controllers/ChatsController";
 import { User } from "../../api/types";
 import { ErrorMessage } from "../errorMessage";
 
@@ -40,7 +40,7 @@ export class PopupChatUserListBase extends Block<PopupChatUserListProps> {
     if (this.props.selectedChatUserList && this.props.selectedChatUserList?.length <= 1) {
       (this.children.errorMessage as Block).show();
     } else {
-      chatsController.deleteUserFromChat(this.props.selectedChatId, user.id);
+      ChatsController.deleteUserFromChat(this.props.selectedChatId, user.id);
       (this.children.errorMessage as Block).hide();
     }
 

@@ -6,8 +6,8 @@ import { RegisterPage } from "./pages/Register";
 import { ChatPage } from "./pages/Chat";
 import { ProfileEditInfoPage } from "./pages/ProfileEditInfo";
 import { ProfileEditPasswordPage } from "./pages/ProfileEditPassword";
-import Router from "./utils/Router";
-import AuthController from "./controllers/AuthController";
+import { router } from "./utils/Router";
+import { AuthController } from "./controllers/AuthController";
 import { ProfilePage } from "./pages/Profile";
 
 export enum Routes {
@@ -22,7 +22,7 @@ export enum Routes {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  Router
+  router
     .use(Routes.Auth, AuthPage)
     .use(Routes.Register, RegisterPage)
     .use(Routes.Error404, Error404Page)
@@ -43,15 +43,15 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   try {
     await AuthController.getUser();
-    Router.start();
+    router.start();
     if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
+      router.go(Routes.Profile);
     }
   } catch (e) {
-    Router.start();
+    router.start();
 
     if (isProtectedRoute) {
-      Router.go(Routes.Auth);
+      router.go(Routes.Auth);
     }
   }
 

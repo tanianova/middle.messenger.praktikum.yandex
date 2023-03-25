@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { InputFieldProps } from "../inputField/types";
 import { validateInput } from "../../helpers/validateInput";
 

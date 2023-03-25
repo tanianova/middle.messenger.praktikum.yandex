@@ -1,8 +1,8 @@
-import Block from "../utils/Block";
-import Router from "../utils/Router";
+import { Block } from "../utils/Block";
+import { router } from "../utils/Router";
 
 export interface PropsWithRouter {
-  router: typeof Router;
+  router: typeof router;
 }
 
 export function withRouter(Component: typeof Block<any>) {
@@ -12,7 +12,7 @@ export function withRouter(Component: typeof Block<any>) {
     constructor(props: Props & PropsWithRouter) {
       super({
         ...props,
-        router: Router,
+        router: router,
       });
     }
   };

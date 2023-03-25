@@ -19,3 +19,5 @@ export const ERROR_MESSAGE = {
   phone: "От 10 до 15 символов, состоит из цифр, может начинается с плюса.",
   isRequired: "Поле обязательно для заполнения ",
 };
+
+export const BASE_URL = "https://ya-praktikum.tech/api/v2";

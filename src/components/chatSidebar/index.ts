@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 
 import { withStore } from "../../hocs/withStore";
 import { Button } from "../button";
@@ -8,10 +8,10 @@ import { Link } from "../link";
 import { Routes } from "../../index";
 import { SearchInput } from "../searchInput";
 import { ChatItem } from "../chatItem";
-import ChatsController from "../../controllers/ChatsController";
+import { ChatsController } from "../../controllers/ChatsController";
 import { ChatSidebarProps } from "./types";
-import router from "../../utils/Router";
-import store from "../../utils/Store";
+import { router } from "../../utils/Router";
+import { store } from "../../utils/Store";
 
 export class ChatSidebarBase extends Block<ChatSidebarProps> {
   init() {

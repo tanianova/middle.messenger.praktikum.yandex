@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { ChatHeaderProps } from "./types";
 import { PopoverEditChat } from "../popoverEditChat";
 import { ButtonEditChat } from "../buttonEditChat";
