@@ -1,0 +1,17 @@
+<div class="popup center">
+  <div class="overflow">
+    <div class="popup__wrapper form__wrapper">
+      <form class="add-user-to-chat__form">
+        <h4 class="popup__title">Введите логин пользователя</h4>
+        {{{input}}}
+        {{{button}}}
+        {{{closeButton}}}
+      </form>
+      <ul class="user-item__list">
+        {{#each userList}}
+          {{{this}}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

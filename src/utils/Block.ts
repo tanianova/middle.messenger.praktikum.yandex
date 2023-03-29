@@ -1,16 +1,7 @@
-import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
+import { EventBus } from "./EventBus";
 
-type BlockEvents<P = any> = {
-  init: [];
-  "flow:component-did-mount": [];
-  "flow:component-did-update": [P, P];
-  "flow:render": [];
-}
-
-type Props<P extends Record<string, unknown> = any> = { events?: Record<string, () => void> } & P;
-
-abstract class Block<P extends Record<string, unknown> = any> {
+export class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -19,13 +10,13 @@ abstract class Block<P extends Record<string, unknown> = any> {
   } as const;
 
   public id = nanoid(6);
-  protected props: Props<P>;
+  protected props: P;
   public children: Record<string, Block | Block[]>;
-  private eventBus: () => EventBus<BlockEvents<Props<P>>>;
+  private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 
-  constructor(propsWithChildren: Props<P> = {} as Props<P>) {
-    const eventBus = new EventBus<BlockEvents<Props<P>>>();
+  constructor(propsWithChildren: P = {} as P) {
+    const eventBus = new EventBus();
 
     const {
       props,
@@ -42,8 +33,8 @@ abstract class Block<P extends Record<string, unknown> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: Props<P>): { props: Props<P>, children: Record<string, Block | Block[]> } {
-    const props = {} as Record<string, unknown>;
+  private _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block | Block[]> } {
+    const props: Record<string, unknown> = {};
     const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps)
@@ -58,7 +49,7 @@ abstract class Block<P extends Record<string, unknown> = any> {
       });
 
     return {
-      props: props as Props<P>,
+      props: props as P,
       children,
     };
   }
@@ -85,7 +76,7 @@ abstract class Block<P extends Record<string, unknown> = any> {
       });
   }
 
-  _registerEvents(eventBus: EventBus<BlockEvents>) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -124,18 +115,19 @@ abstract class Block<P extends Record<string, unknown> = any> {
       });
   }
 
-  private _componentDidUpdate() {
-    if (this.componentDidUpdate()) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
+    if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus()
         .emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate() {
+  // @ts-ignore
+  protected componentDidUpdate(oldProps: P, newProps: P) {
     return true;
   }
 
-  setProps = (nextProps: Partial<Props<P>>) => {
+  setProps = (nextProps: P) => {
     if (!nextProps) {
       return;
     }
@@ -160,7 +152,7 @@ abstract class Block<P extends Record<string, unknown> = any> {
     this._addEvents();
   }
 
-  protected compile(template: (context: Props) => string, context: Props) {
+  protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children)
@@ -220,7 +212,7 @@ abstract class Block<P extends Record<string, unknown> = any> {
     return this.element;
   }
 
-  private _makePropsProxy(props: Props<P>) {
+  private _makePropsProxy(props: P) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
@@ -232,7 +224,7 @@ abstract class Block<P extends Record<string, unknown> = any> {
       set(target, prop: string, value) {
         const oldTarget = { ...target };
 
-        target[prop as keyof Props<P>] = value;
+        target[prop as keyof P] = value;
 
         // Запускаем обновление компоненты
         // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
@@ -253,6 +245,13 @@ abstract class Block<P extends Record<string, unknown> = any> {
   hide() {
     this.getContent()!.style.display = "none";
   }
+
+  toggle() {
+    if (this.getContent()!.style.display === "block") {
+      this.getContent()!.style.display = "none";
+    } else {
+      this.getContent()!.style.display = "block";
+    }
+  }
 }
 
-export default Block;

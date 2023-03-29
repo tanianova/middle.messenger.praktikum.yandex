@@ -1,26 +1,23 @@
-import Block from "../../utils/Block";
-import template from "./ui.hbs";
-import { PopoverEditUser } from "../../components/popoverEditUser";
-import { SearchInput } from "../../components/searchInput";
-import { chatList, chatMessageList } from "./const";
-import { ChatItem } from "../../components/chatItem";
+import { Block } from "../../utils/Block";
+import  template  from "./ui.hbs";
 import { ChatMessage } from "../../components/chatMessage";
 import { ButtonArrow } from "../../components/buttonArrow";
-import { Link } from "../../components/link";
-import { InputMessage } from "../../components/inputMessage";
-import { getFormData } from "../../utils/getFormData";
 
-export class ChatPage extends Block {
+import { InputMessage } from "../../components/inputMessage";
+import { getFormData } from "../../helpers/getFormData";
+
+import { ChatsController } from "../../controllers/ChatsController";
+import { ChatHeader } from "../../components/chatHeader";
+import { withStore } from "../../hocs/withStore";
+import { ChatSidebar } from "../../components/chatSidebar";
+import { MessagesController } from "../../controllers/MessagesController";
+import { ChatPageProps } from "./types";
+
+export class ChatPageBase extends Block<ChatPageProps> {
   init() {
-    this.children.popover = new PopoverEditUser();
-    this.children.profileLink = new Link({
-      text: "Профиль",
-      class: "chat-link",
-      href: "/profile",
-    });
-    this.children.searchInput = new SearchInput();
-    this.children.chatList = chatList.map(chat => new ChatItem({ ...chat }));
-    this.children.chatMessageList = chatMessageList.map(message => new ChatMessage({ ...message }));
+    this.children.sidebar = new ChatSidebar({});
+    this.children.chatHeader = this.createChatHeader(this.props);
+    this.children.chatMessageList = this.createChatMessageList(this.props);
     this.children.buttonArrow = new ButtonArrow({
       type: "submit",
       class: "arrow-reverse",
@@ -29,15 +26,55 @@ export class ChatPage extends Block {
       },
     });
     this.children.inputMessage = new InputMessage({});
+    ChatsController.getChats();
   }
 
   onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
-    console.log(data);
+    MessagesController.sendMessage(this.props.selectedChatId, data["message"]);
+    (this.children.inputMessage as InputMessage).setValue("");
+  }
+
+  createChatHeader(props: ChatPageProps) {
+    return new ChatHeader(props);
+  }
+
+  createChatMessageList(props: ChatPageProps) {
+    return (props.messages || []).map(data => {
+      return new ChatMessage({ data });
+    });
+  }
+
+  messageDate(): string {
+    const lastMessage = (this.props.selectedChat || {}).last_message;
+    return lastMessage
+      ? new Date(lastMessage.time).toLocaleDateString("ru-Ru")
+      : "Выберите Чат";
+  }
+
+  componentDidUpdate(_oldProps: ChatPageProps, newProps: ChatPageProps): boolean {
+    this.children.chatHeader = this.createChatHeader(newProps);
+    this.children.chatMessageList = this.createChatMessageList(newProps);
+    return true;
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, {
+      ...this.props,
+      messageDate: this.messageDate(),
+    });
   }
 }
+
+export const ChatPage = withStore((state) => {
+  return {
+    chatList: state.chatList,
+    selectedChatId: state.selectedChatId,
+    selectedChatUserList: state.selectedChatUserList,
+    searchList: state.userSearchResultList,
+    selectedChat: state.selectedChatId &&
+      state.chatList?.find((chat) => chat.id === state.selectedChatId),
+    messages: state.selectedChatId && (state.messages || {})[state.selectedChatId] || [],
+  };
+})(ChatPageBase);

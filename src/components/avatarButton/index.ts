@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import template from "../avatarButton/ui.hbs";
+import { Block } from "../../utils/Block";
+import  template  from "../avatarButton/ui.hbs";
 import { AvatarProps } from "../avatar/types";
 
 export class AvatarButton extends Block {

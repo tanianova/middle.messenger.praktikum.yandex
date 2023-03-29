@@ -1,8 +1,7 @@
+import { ChatInfo } from "../../api/types";
+
 export interface ChatItemProps {
-  src?: string;
-  name: string;
-  time: string;
-  lastMessageMine?: boolean;
-  message: string;
-  unread?: string;
+  data: ChatInfo;
+  selectedChatId?: number;
+  events?: Record<string, EventListenerOrEventListenerObject>;
 }

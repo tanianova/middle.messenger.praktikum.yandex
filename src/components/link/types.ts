@@ -1,5 +1,8 @@
-export interface LinkProps {
+import { PropsWithRouter } from "../../hocs/withRouter";
+
+export interface LinkProps extends PropsWithRouter {
   text: string;
   class?: string;
-  href: string;
+  to: string;
+  events?: Record<string, EventListenerOrEventListenerObject>;
 }

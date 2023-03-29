@@ -1,30 +1,58 @@
-import { renderDom } from "./utils/renderDom";
 import "./styles/index.pcss";
 import { AuthPage } from "./pages/Auth";
 import { Error404Page } from "./pages/404";
 import { Error500Page } from "./pages/500";
 import { RegisterPage } from "./pages/Register";
 import { ChatPage } from "./pages/Chat";
-import { ProfilePage } from "./pages/Profile";
 import { ProfileEditInfoPage } from "./pages/ProfileEditInfo";
 import { ProfileEditPasswordPage } from "./pages/ProfileEditPassword";
-import Block from "./utils/Block";
+import { router } from "./utils/Router";
+import { AuthController } from "./controllers/AuthController";
+import { ProfilePage } from "./pages/Profile";
 
-type Route = Record<string, typeof Block>;
+export enum Routes {
+  Auth = "/",
+  Register = "/register",
+  Error404 = "/404",
+  Error500 = "/500",
+  Chat = "/messenger",
+  Profile = "/settings",
+  EditInfo = "/edit-info",
+  EditPassword = "/edit-password"
+}
 
-export const ROUTES: Route = {
-  "/": AuthPage,
-  "/404": Error404Page,
-  "/500": Error500Page,
-  "/register": RegisterPage,
-  "/chat": ChatPage,
-  "/profile": ProfilePage,
-  "/profile/edit_info": ProfileEditInfoPage,
-  "/profile/edit_password": ProfileEditPasswordPage,
-};
+window.addEventListener("DOMContentLoaded", async () => {
+  router
+    .use(Routes.Auth, AuthPage)
+    .use(Routes.Register, RegisterPage)
+    .use(Routes.Error404, Error404Page)
+    .use(Routes.Error500, Error500Page)
+    .use(Routes.Chat, ChatPage)
+    .use(Routes.Profile, ProfilePage)
+    .use(Routes.EditInfo, ProfileEditInfoPage)
+    .use(Routes.EditPassword, ProfileEditPasswordPage);
 
-const pageToRender = ROUTES[window.location.pathname];
+  let isProtectedRoute = true;
 
-window.addEventListener("DOMContentLoaded", () => {
-  renderDom(new pageToRender());
+  switch (window.location.pathname) {
+    case Routes.Auth:
+    case Routes.Register:
+      isProtectedRoute = false;
+      break;
+  }
+
+  try {
+    await AuthController.getUser();
+    router.start();
+    if (!isProtectedRoute) {
+      router.go(Routes.Profile);
+    }
+  } catch (e) {
+    router.start();
+
+    if (isProtectedRoute) {
+      router.go(Routes.Auth);
+    }
+  }
+
 });

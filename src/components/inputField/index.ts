@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import { InputFieldProps } from "./types";
-import template from "./ui.hbs";
+import  template  from "./ui.hbs";
 import { Input } from "../input";
 import { ErrorMessage } from "../errorMessage";
 

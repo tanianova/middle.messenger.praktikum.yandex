@@ -1,31 +1,11 @@
 <section class="chat">
-  <div class="chat-sidebar">
-    <div class="chat-link__container">
-      {{{profileLink}}}
-    </div>
-    {{{searchInput}}}
-    <div class="chat-list">
-      {{#each chatList}}
-        {{{this}}}
-      {{/each}}
-    </div>
-  </div>
+  {{{sidebar}}}
   <div class="chat-content">
-    {{{popover}}}
-    <div class="chat-content__header">
-      <div class="chat-content__header-info">
-        <div class="chat-content__header-avatar small-avatar">
-        </div>
-        <h5 class="chat-content__header-name">Вадим</h5>
-      </div>
-      <button class="button chat-content__header-button">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </button>
-    </div>
+    {{#if selectedChat}}
+      {{{chatHeader}}}
+    {{/if}}
     <div class="chat-content__main">
-      <p class="chat-content__main-date">19 june</p>
+      <p class="chat-content__main-date">{{messageDate}}</p>
       {{#each chatMessageList}}
         {{{this}}}
       {{/each}}
@@ -40,5 +20,4 @@
       </form>
     </div>
   </div>
-
 </section>

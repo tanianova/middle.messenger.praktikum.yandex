@@ -1,10 +1,10 @@
-<div class="chat-item">
+<div class="chat-item {{#if selected}}selected{{/if}}">
   <div class="chat-item__avatar small-avatar">
-    {{#if src}}<img src="{{src}}" alt="Avatar" /> {{/if}}
+    {{#if avatar}}<img src="{{avatar}}" alt="Avatar" /> {{/if}}
   </div>
   <div class="chat-item__content">
     <div class="chat-item__title">
-      <div class="chat-item__name">{{name}}</div>
+      <div class="chat-item__name">{{title}}</div>
       <time class="chat-item__time">{{time}}</time>
     </div>
     <div class="chat-item__desc">
@@ -12,10 +12,10 @@
         {{#if lastMessageMine}}
           <span class="chat-item__msg-mine">Вы:</span>
         {{/if}}
-        {{message}}</div>
-      {{#if unread}}
+        {{last_message}}</div>
+      {{#if unread_count}}
         <div class="chat-item__unread">
-          <span>{{unread}}</span>
+          <span>{{unread_count}}</span>
         </div>
       {{/if}}
     </div>
