@@ -26,12 +26,29 @@ describe("Block", () => {
   class ComponentMock extends Block {
   }
 
+  const block = new ComponentMock();
+
   it("should fire init event on initialization", () => {
     new ComponentMock({});
 
     expect(eventBusMock.emit.calledWith("init"))
       .to
       .eq(true);
+  });
+
+  it("should set props correctly", () => {
+    block.setProps({ name: "name" });
+    // @ts-ignore
+    expect(block.props)
+      .to
+      .have
+      .property("name");
+  });
+
+  it("should return HTMLElement", () => {
+    expect(block.getContent())
+      .to
+      .eq(block.element);
   });
 
 });
