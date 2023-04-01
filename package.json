@@ -2,11 +2,6 @@
   "name": "messenger",
   "version": "1.0.0",
   "description": "Messenger",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all lint test tsc:check"
-    }
-  },
   "scripts": {
     "prepare": "husky install",
     "dev": "webpack-dev-server --no-cache --open",
@@ -18,6 +13,11 @@
     "stylelint": "stylelint \"src/**/*.{pcss,.pcss}\"",
     "fix-lint": "eslint --ext .ts  src --fix",
     "fix-stylelint": "stylelint \"src/**/*.{pcss,.pcss}\" --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all lint test tsc:check"
+    }
   },
   "author": "",
   "license": "ISC",
@@ -47,6 +47,7 @@
     "jsdom": "21.1.1",
     "mini-css-extract-plugin": "2.7.5",
     "mocha": "10.0.0",
+    "npm-run-all": "4.1.5",
     "postcss": "8.4.21",
     "postcss-import": "15.1.0",
     "postcss-loader": "7.1.0",

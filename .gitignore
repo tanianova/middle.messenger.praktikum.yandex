@@ -1,7 +1,6 @@
 # dependencies
 /node_modules
 /dist
-/.parcel-cache
 
 # misc
 .DS_Store
@@ -14,3 +13,4 @@ npm-debug.log*
 
 .vscode
 .idea
+.husky
