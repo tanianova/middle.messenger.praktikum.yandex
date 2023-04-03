@@ -10,14 +10,16 @@
         {{{this}}}
       {{/each}}
     </div>
-    <div class='chat-content__footer'>
-      <form class='message__form' action=''>
-        <label class="attachment__label" for="attachment">
-          <input class="attachment__input" type="file" id="attachment" name="attachment" />
-        </label>
-        {{{inputMessage}}}
-        {{{buttonArrow}}}
-      </form>
-    </div>
+    {{#if selectedChat}}
+      <div class='chat-content__footer'>
+        <form class='message__form' action=''>
+          <label class="attachment__label" for="attachment">
+            <input class="attachment__input" type="file" id="attachment" name="attachment" />
+          </label>
+          {{{inputMessage}}}
+          {{{buttonArrow}}}
+        </form>
+      </div>
+    {{/if}}
   </div>
 </section>
