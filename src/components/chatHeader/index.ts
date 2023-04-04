@@ -5,6 +5,7 @@ import { PopoverEditChat } from "../popoverEditChat";
 import { ButtonEditChat } from "../buttonEditChat";
 import { PopupAddUserToChat } from "../popupAddUserToChat";
 import { PopupChatUserList } from "../popupChatUserList";
+import { BASE_URL } from "../../helpers/const";
 
 export class ChatHeader extends Block<ChatHeaderProps> {
   constructor(props: ChatHeaderProps) {
@@ -34,9 +35,11 @@ export class ChatHeader extends Block<ChatHeaderProps> {
   }
 
   render() {
+    const avatar =  this.props.selectedChat?.avatar && `${BASE_URL}/resources${this.props.selectedChat.avatar}`;
     return this.compile(template, {
       ...this.props,
       title: this.props.selectedChat?.title,
+      avatar
     });
   }
 }
