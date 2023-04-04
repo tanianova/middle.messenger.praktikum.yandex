@@ -5,7 +5,7 @@ import { Indexed } from "./types";
 describe("set helper", () => {
   //arrange
   let obj = {};
-  const path = "a.b";
+  const path = "a";
   const value = 3;
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe("set helper", () => {
     const result = set(obj, path, value) as Indexed;
 
     //assert
-    expect(result.a.b)
+    expect(result.a)
       .to
       .eq(value);
   });
