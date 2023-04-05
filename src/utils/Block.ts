@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import {v4 as uuidV4} from "uuid";
 import { EventBus } from "./EventBus";
 
 export class Block<P extends Record<string, any> = any> {
@@ -9,7 +9,7 @@ export class Block<P extends Record<string, any> = any> {
     FLOW_RENDER: "flow:render",
   } as const;
 
-  public id = nanoid(6);
+  public id = uuidV4();
   protected props: P;
   public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;

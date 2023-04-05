@@ -3,7 +3,7 @@ import { LinkProps } from "./types";
 import  template  from "./ui.hbs";
 import { withRouter } from "../../hocs/withRouter";
 
-class BaseLink extends Block<LinkProps> {
+export class BaseLink extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({
       ...props,

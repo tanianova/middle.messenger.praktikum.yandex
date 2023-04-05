@@ -1,5 +1,5 @@
 import { Block } from "../../utils/Block";
-import  template  from "./ui.hbs";
+import template from "./ui.hbs";
 import { ChatMessage } from "../../components/chatMessage";
 import { ButtonArrow } from "../../components/buttonArrow";
 
@@ -32,8 +32,10 @@ export class ChatPageBase extends Block<ChatPageProps> {
   onSubmit(e: Event) {
     e.preventDefault();
     const data = getFormData(this.getContent());
-    MessagesController.sendMessage(this.props.selectedChatId, data["message"]);
-    (this.children.inputMessage as InputMessage).setValue("");
+    if (data["message"].trim()) {
+      MessagesController.sendMessage(this.props.selectedChatId, data["message"]);
+      (this.children.inputMessage as InputMessage).setValue("");
+    }
   }
 
   createChatHeader(props: ChatPageProps) {
