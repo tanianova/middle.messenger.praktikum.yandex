@@ -15,18 +15,9 @@
     "fix-lint": "eslint --ext .ts  src --fix",
     "fix-stylelint": "stylelint \"src/**/*.{pcss,.pcss}\" --fix"
   },
-  "lint-staged": {
-    "*.{ts}": [
-      "npm run fix",
-      "npm run test"
-    ],
-    "*.{pcss}": [
-      "npm run lint-style"
-    ]
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint && npm run test && npm run tsc:check"
     }
   },
   "author": "",
@@ -53,7 +44,6 @@
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.3",
     "jsdom": "21.1.1",
-    "lint-staged": "13.2.0",
     "mini-css-extract-plugin": "2.7.5",
     "mocha": "10.0.0",
     "postcss": "8.4.21",
