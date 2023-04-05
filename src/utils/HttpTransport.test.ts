@@ -56,7 +56,7 @@ describe("HTTPTransport class", () => {
   });
 
   it("should make PUT request", () => {
-    instance.put("/user", );
+    instance.put("/user", {});
     const [request] = requests;
 
     expect(request.method)
@@ -65,7 +65,7 @@ describe("HTTPTransport class", () => {
   });
 
   it("should make PATCH request", () => {
-    instance.patch("/user",  );
+    instance.patch("/user", {});
     const [request] = requests;
 
     expect(request.method)
@@ -73,4 +73,3 @@ describe("HTTPTransport class", () => {
       .eq("Patch");
   });
 });
-
