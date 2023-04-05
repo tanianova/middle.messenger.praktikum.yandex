@@ -1,5 +1,7 @@
 import { BASE_URL } from "../helpers/const";
 
+type HTTPMethod<Response = void> = (url: string, options?: Options) => Promise<Response>
+
 enum Methods {
   Get = "Get",
   Post = "Post",
@@ -22,39 +24,39 @@ export class HTTPTransport {
     this.endpoint = `${BASE_URL}${endpoint}`;
   }
 
-  public get<Response>(path = "/"): Promise<Response> {
-    return this.request<Response>(this.endpoint + path);
-  }
+  public get: HTTPMethod = (path = "/") => {
+    return this.request(this.endpoint + path);
+  };
 
-  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public post: HTTPMethod = (path, data?) => {
+    return this.request(this.endpoint + path, {
       method: Methods.Post,
       data,
     });
-  }
+  };
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public put: HTTPMethod = (path, data?) => {
+    return this.request(this.endpoint + path, {
       method: Methods.Put,
       data,
     });
-  }
+  };
 
-  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public patch: HTTPMethod = (path, data?) => {
+    return this.request(this.endpoint + path, {
       method: Methods.Patch,
       data,
     });
-  }
+  };
 
-  public delete<Response>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public delete: HTTPMethod = (path, data?) => {
+    return this.request(this.endpoint + path, {
       method: Methods.Delete,
       data,
     });
-  }
+  };
 
-  private request<Response>(url: string, options: Options = { method: Methods.Get }): Promise<Response> {
+  private request: HTTPMethod = (url, options = { method: Methods.Get }) => {
     const {
       method,
       data,
@@ -89,5 +91,5 @@ export class HTTPTransport {
         xhr.send(isFormData ? data : JSON.stringify(data));
       }
     });
-  }
+  };
 }
